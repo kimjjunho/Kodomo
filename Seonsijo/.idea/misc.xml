@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/ic_charm_chevron_down.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/layout_shape.xml" value="0.21537030029296877" />
+        <entry key="app/src/main/res/drawable/main_btn_after_week.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/main_btn_before_week.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/main_btn_class.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/main_text_style.xml" value="0.203" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.31237640380859366" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

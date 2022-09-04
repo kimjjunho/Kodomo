@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="mainText">
+        <item name="android:textColor">@color/black3A</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">56.5dp</item>
+        <item name="android:layout_height">46dp</item>
+    </style>
+    
+    <style name="widthLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/grayE7</item>
+    </style>
+
+    <style name="verticalLineAll">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/grayE7</item>
+    </style>
+
+    <style name="verticalLineTop">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">184dp</item>
+        <item name="android:background">@color/grayE7</item>
+    </style>
+
+    <style name="verticalLineBottom">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">138dp</item>
+        <item name="android:background">@color/grayE7</item>
+        <item name="android:layout_gravity">bottom</item>
+    </style>
+
+    <style name="classCount">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:textColor">@color/gray7B</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="day_of_week_text">
+        <item name="android:layout_width">55.5dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/gray7B</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="main_btn">
+        <item name="android:layout_width">56.5dp</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:background">#00ff0000</item>
+    </style>
+</resources>
