@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.1574074074074074" />
         <entry key="app/src/main/res/drawable/ic_charm_chevron_down.xml" value="0.203" />
         <entry key="app/src/main/res/drawable/layout_shape.xml" value="0.21537030029296877" />
         <entry key="app/src/main/res/drawable/main_btn_after_week.xml" value="0.203" />
@@ -11,6 +12,7 @@
         <entry key="app/src/main/res/drawable/main_sliding_up_panel_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/main_text_style.xml" value="0.203" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2342007434944238" />
+        <entry key="app/src/main/res/layout/item_main.xml" value="0.37168141592920356" />
       </map>
     </option>
   </component>
