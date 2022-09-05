@@ -21,7 +21,10 @@ class MainAdapter(
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val itemList = mainList[position]
-        holder.apply { bind(itemList, position) }
+
+        holder.tvItem.text = mainList[position]
+
+        holder.apply { bind(position) }
     }
 
     override fun getItemCount(): Int {
@@ -33,7 +36,7 @@ class MainAdapter(
         mainActivity: MainActivity,
         isGrade: Boolean
     ): RecyclerView.ViewHolder(itemView) {
-        private val tvItem: TextView = itemView.findViewById(R.id.tv_item)
+        val tvItem: TextView = itemView.findViewById(R.id.tv_item)
         private val itemAll: ConstraintLayout = itemView.findViewById(R.id.item_all)
         private val itemLine: View = itemView.findViewById(R.id.item_line)
 
@@ -43,14 +46,11 @@ class MainAdapter(
         private val isGrade = isGrade
 
         fun bind(
-            data: String,
             position: Int
         ){
             if(position == 0){
                 itemLine.visibility = View.INVISIBLE
             }
-
-            tvItem.text = data
 
             itemAll.setOnClickListener {
                 if(isGrade){
