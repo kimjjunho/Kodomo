@@ -4,699 +4,734 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
-
-        <TextView
-            android:id="@+id/tv_grade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="1학년"
-            android:textColor="@color/black24"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/btn_grade_num"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/main_btn_class"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_grade"
-            app:layout_constraintStart_toEndOf="@+id/tv_grade"
-            app:layout_constraintTop_toTopOf="@+id/tv_grade" />
-
-        <TextView
-            android:id="@+id/tv_class"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="2반 "
-            android:textColor="@color/black24"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_grade_num"
-            app:layout_constraintStart_toEndOf="@+id/btn_grade_num"
-            app:layout_constraintTop_toTopOf="@+id/btn_grade_num" />
-
-        <ImageButton
-            android:id="@+id/btn_class_num"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="35dp"
-            android:layout_height= "35dp"
-            android:src="@drawable/main_btn_class"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_class"
-            app:layout_constraintStart_toEndOf="@+id/tv_class"
-            app:layout_constraintTop_toTopOf="@+id/tv_class" />
+        android:id="@+id/sliding_panel_layout"
+        android:gravity="bottom"
+        tools:context=".MainActivity"
+        app:umanoScrollableView="@id/drag_view"
+        app:umanoPanelHeight="0dp"
+        app:umanoOverlay="true"
+        app:umanoShadowHeight="0dp"
+        app:umanoParallaxOffset="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="330dp"
-            android:layout_height="500dp"
-            android:layout_marginTop="90dp"
-            android:background="@drawable/main_white_box_gray_stroke"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
 
             <TextView
-                android:id="@+id/tv_schedule_week"
+                android:id="@+id/tv_grade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="이번주 시간표"
+                android:layout_marginTop="30dp"
+                android:text="1학년"
                 android:textColor="@color/black24"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/btn_before_week"
+                android:id="@+id/btn_grade_num"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="24dp"
-                android:layout_height="38dp"
-                android:layout_marginEnd="15dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/main_btn_before_week"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_schedule_week"
-                app:layout_constraintEnd_toStartOf="@+id/tv_schedule_week"
-                app:layout_constraintTop_toTopOf="@+id/tv_schedule_week" />
+                android:src="@drawable/main_btn_class"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_grade"
+                app:layout_constraintStart_toEndOf="@+id/tv_grade"
+                app:layout_constraintTop_toTopOf="@+id/tv_grade" />
+
+            <TextView
+                android:id="@+id/tv_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="2반 "
+                android:textColor="@color/black24"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_grade_num"
+                app:layout_constraintStart_toEndOf="@+id/btn_grade_num"
+                app:layout_constraintTop_toTopOf="@+id/btn_grade_num" />
 
             <ImageButton
-                android:id="@+id/btn_after_week"
+                android:id="@+id/btn_class_num"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="24dp"
-                android:layout_height="38dp"
-                android:layout_marginStart="15dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/main_btn_after_week"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_schedule_week"
-                app:layout_constraintStart_toEndOf="@+id/tv_schedule_week"
-                app:layout_constraintTop_toTopOf="@+id/tv_schedule_week" />
+                android:src="@drawable/main_btn_class"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_class"
+                app:layout_constraintStart_toEndOf="@+id/tv_class"
+                app:layout_constraintTop_toTopOf="@+id/tv_class" />
 
-            <LinearLayout
-                android:layout_width="30dp"
-                android:layout_height="370dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
-                app:layout_constraintEnd_toStartOf="@+id/tableLayout"
-                app:layout_constraintTop_toTopOf="@+id/tableLayout">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="330dp"
+                android:layout_height="500dp"
+                android:layout_marginTop="90dp"
+                android:background="@drawable/main_white_box_gray_stroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    style="@style/classCount"
-                    android:text="1" />
-
-                <TextView
-                    style="@style/classCount"
-                    android:text="2" />
 
                 <TextView
-                    style="@style/classCount"
-                    android:text="3" />
+                    android:id="@+id/tv_schedule_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="이번주 시간표"
+                    android:textColor="@color/black24"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.502"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    style="@style/classCount"
-                    android:text="4" />
+                <ImageButton
+                    android:id="@+id/btn_before_week"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="24dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/main_btn_before_week"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_schedule_week"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_schedule_week"
+                    app:layout_constraintTop_toTopOf="@+id/tv_schedule_week" />
 
-                <TextView style="@style/classCount" />
+                <ImageButton
+                    android:id="@+id/btn_after_week"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="24dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/main_btn_after_week"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_schedule_week"
+                    app:layout_constraintStart_toEndOf="@+id/tv_schedule_week"
+                    app:layout_constraintTop_toTopOf="@+id/tv_schedule_week" />
 
-                <TextView
-                    style="@style/classCount"
-                    android:text="5" />
-
-                <TextView
-                    style="@style/classCount"
-                    android:text="6" />
-
-                <TextView
-                    style="@style/classCount"
-                    android:text="7" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="282dp"
-                android:layout_height="40dp"
-                app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-                app:layout_constraintEnd_toEndOf="@+id/tableLayout">
-
-                <TextView
-                    style="@style/day_of_week_text"
-                    android:text="월" />
-
-                <TextView
-                    style="@style/day_of_week_text"
-                    android:text="화" />
-
-                <TextView
-                    style="@style/day_of_week_text"
-                    android:text="수" />
-
-                <TextView
-                    style="@style/day_of_week_text"
-                    android:text="목" />
-
-                <TextView
-                    style="@style/day_of_week_text"
-                    android:text="금" />
-            </LinearLayout>
-
-            <TableLayout
-                android:id="@+id/tableLayout"
-                android:layout_width="282dp"
-                android:layout_height="370dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toBottomOf="@id/constraintLayout"
-                app:layout_constraintEnd_toEndOf="@+id/constraintLayout">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
+                <LinearLayout
+                    android:layout_width="30dp"
+                    android:layout_height="370dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
+                    app:layout_constraintEnd_toStartOf="@+id/tableLayout"
+                    app:layout_constraintTop_toTopOf="@+id/tableLayout">
 
                     <TextView
-                        android:id="@+id/monday1"
-                        style="@style/mainText"
-                        android:text="국어" />
+                        style="@style/classCount"
+                        android:text="1" />
 
                     <TextView
-                        android:id="@+id/tuesday1"
-                        style="@style/mainText"
+                        style="@style/classCount"
+                        android:text="2" />
+
+                    <TextView
+                        style="@style/classCount"
+                        android:text="3" />
+
+                    <TextView
+                        style="@style/classCount"
+                        android:text="4" />
+
+                    <TextView style="@style/classCount" />
+
+                    <TextView
+                        style="@style/classCount"
+                        android:text="5" />
+
+                    <TextView
+                        style="@style/classCount"
+                        android:text="6" />
+
+                    <TextView
+                        style="@style/classCount"
+                        android:text="7" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="282dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+                    app:layout_constraintEnd_toEndOf="@+id/tableLayout">
+
+                    <TextView
+                        style="@style/day_of_week_text"
+                        android:text="월" />
+
+                    <TextView
+                        style="@style/day_of_week_text"
+                        android:text="화" />
+
+                    <TextView
+                        style="@style/day_of_week_text"
+                        android:text="수" />
+
+                    <TextView
+                        style="@style/day_of_week_text"
+                        android:text="목" />
+
+                    <TextView
+                        style="@style/day_of_week_text"
+                        android:text="금" />
+                </LinearLayout>
+
+                <TableLayout
+                    android:id="@+id/tableLayout"
+                    android:layout_width="282dp"
+                    android:layout_height="370dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintBottom_toBottomOf="@id/constraintLayout"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintLayout">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
+
+                        <TextView
+                            android:id="@+id/monday1"
+                            style="@style/mainText"
+                            android:text="국어" />
+
+                        <TextView
+                            android:id="@+id/tuesday1"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/wednesday1"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/thursday1"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/friday1"
+                            style="@style/mainText"
+                            android:text="수학" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
+
+                        <TextView
+                            android:id="@+id/monday2"
+                            style="@style/mainText"
+                            android:text="국어" />
+
+                        <TextView
+                            android:id="@+id/tuesday2"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/wednesday2"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/thursday2"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/friday2"
+                            style="@style/mainText"
+                            android:text="수학" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
+
+                        <TextView
+                            android:id="@+id/monday3"
+                            style="@style/mainText"
+                            android:text="국어" />
+
+                        <TextView
+                            android:id="@+id/tuesday3"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/wednesday3"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/thursday3"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/friday3"
+                            style="@style/mainText"
+                            android:text="수학" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
+
+                        <TextView
+                            android:id="@+id/monday4"
+                            style="@style/mainText"
+                            android:text="국어" />
+
+                        <TextView
+                            android:id="@+id/tuesday4"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/wednesday4"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/thursday4"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/friday4"
+                            style="@style/mainText"
+                            android:text="수학" />
+                    </TableRow>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_gravity="center"
+                        android:background="@color/main_color"
+                        android:gravity="center"
+                        android:text="즐거운 점심시간"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
+
+                        <TextView
+                            android:id="@+id/monday5"
+                            style="@style/mainText"
+                            android:text="국어" />
+
+                        <TextView
+                            android:id="@+id/tuesday5"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/wednesday5"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/thursday5"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/friday5"
+                            style="@style/mainText"
+                            android:text="수학" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
+
+                        <TextView
+                            android:id="@+id/monday6"
+                            style="@style/mainText"
+                            android:text="국어" />
+
+                        <TextView
+                            android:id="@+id/tuesday6"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/wednesday6"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/thursday6"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/friday6"
+                            style="@style/mainText"
+                            android:text="수학" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
+
+                        <TextView
+                            android:id="@+id/monday7"
+                            style="@style/mainText"
+                            android:text="국어" />
+
+                        <TextView
+                            android:id="@+id/tuesday7"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/wednesday7"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/thursday7"
+                            style="@style/mainText"
+                            android:text="수학" />
+
+                        <TextView
+                            android:id="@+id/friday7"
+                            style="@style/mainText"
+                            android:text="수학" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- 버튼 레이아웃 -->
+
+                <TableLayout
+                    android:id="@+id/btn_tableLayout"
+                    android:layout_width="282dp"
+                    android:layout_height="370dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintBottom_toBottomOf="@id/constraintLayout"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintLayout">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
+
+                        <Button
+                            android:id="@+id/btn_monday1"
+                            style="@style/main_btn" />
+
+                        <Button
+                            android:id="@+id/btn_tuesday1"
+                            style="@style/main_btn" />
+
+                        <Button
+                            android:id="@+id/btn_wednesday1"
+                            style="@style/main_btn" />
+
+                        <Button
+                            android:id="@+id/btn_thursday1"
+                            style="@style/main_btn" />
+
+                        <Button
+                            android:id="@+id/btn_friday1"
+                            style="@style/main_btn" />
                         android:text="수학" />
 
-                    <TextView
-                        android:id="@+id/wednesday1"
-                        style="@style/mainText"
-                        android:text="수학" />
+                    </TableRow>
 
-                    <TextView
-                        android:id="@+id/thursday1"
-                        style="@style/mainText"
-                        android:text="수학" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
 
-                    <TextView
-                        android:id="@+id/friday1"
-                        style="@style/mainText"
-                        android:text="수학" />
-                </TableRow>
+                        <Button
+                            android:id="@+id/btn_monday2"
+                            style="@style/main_btn" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
+                        <Button
+                            android:id="@+id/btn_tuesday2"
+                            style="@style/main_btn" />
 
-                    <TextView
-                        android:id="@+id/monday2"
-                        style="@style/mainText"
-                        android:text="국어" />
+                        <Button
+                            android:id="@+id/btn_wednesday2"
+                            style="@style/main_btn" />
 
-                    <TextView
-                        android:id="@+id/tuesday2"
-                        style="@style/mainText"
-                        android:text="수학" />
+                        <Button
+                            android:id="@+id/btn_thursday2"
+                            style="@style/main_btn" />
 
-                    <TextView
-                        android:id="@+id/wednesday2"
-                        style="@style/mainText"
-                        android:text="수학" />
+                        <Button
+                            android:id="@+id/btn_friday2"
+                            style="@style/main_btn" />
+                    </TableRow>
 
-                    <TextView
-                        android:id="@+id/thursday2"
-                        style="@style/mainText"
-                        android:text="수학" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
 
-                    <TextView
-                        android:id="@+id/friday2"
-                        style="@style/mainText"
-                        android:text="수학" />
-                </TableRow>
+                        <Button
+                            android:id="@+id/btn_monday3"
+                            style="@style/main_btn" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
+                        <Button
+                            android:id="@+id/btn_tuesday3"
+                            style="@style/main_btn" />
 
-                    <TextView
-                        android:id="@+id/monday3"
-                        style="@style/mainText"
-                        android:text="국어" />
+                        <Button
+                            android:id="@+id/btn_wednesday3"
+                            style="@style/main_btn" />
 
-                    <TextView
-                        android:id="@+id/tuesday3"
-                        style="@style/mainText"
-                        android:text="수학" />
+                        <Button
+                            android:id="@+id/btn_thursday3"
+                            style="@style/main_btn" />
 
-                    <TextView
-                        android:id="@+id/wednesday3"
-                        style="@style/mainText"
-                        android:text="수학" />
+                        <Button
+                            android:id="@+id/btn_friday3"
+                            style="@style/main_btn" />
+                    </TableRow>
 
-                    <TextView
-                        android:id="@+id/thursday3"
-                        style="@style/mainText"
-                        android:text="수학" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
 
-                    <TextView
-                        android:id="@+id/friday3"
-                        style="@style/mainText"
-                        android:text="수학" />
-                </TableRow>
+                        <Button
+                            android:id="@+id/btn_monday4"
+                            style="@style/main_btn" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
+                        <Button
+                            android:id="@+id/btn_tuesday4"
+                            style="@style/main_btn" />
 
-                    <TextView
-                        android:id="@+id/monday4"
-                        style="@style/mainText"
-                        android:text="국어" />
+                        <Button
+                            android:id="@+id/btn_wednesday4"
+                            style="@style/main_btn"
+                            android:layout_width="59dp" />
 
-                    <TextView
-                        android:id="@+id/tuesday4"
-                        style="@style/mainText"
-                        android:text="수학" />
+                        <Button
+                            android:id="@+id/btn_thursday4"
+                            style="@style/main_btn" />
 
-                    <TextView
-                        android:id="@+id/wednesday4"
-                        style="@style/mainText"
-                        android:text="수학" />
-
-                    <TextView
-                        android:id="@+id/thursday4"
-                        style="@style/mainText"
-                        android:text="수학" />
-
-                    <TextView
-                        android:id="@+id/friday4"
-                        style="@style/mainText"
-                        android:text="수학" />
-                </TableRow>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:layout_gravity="center"
-                    android:background="@color/main_color"
-                    android:gravity="center"
-                    android:text="즐거운 점심시간"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
-
-                    <TextView
-                        android:id="@+id/monday5"
-                        style="@style/mainText"
-                        android:text="국어" />
-
-                    <TextView
-                        android:id="@+id/tuesday5"
-                        style="@style/mainText"
-                        android:text="수학" />
-
-                    <TextView
-                        android:id="@+id/wednesday5"
-                        style="@style/mainText"
-                        android:text="수학" />
-
-                    <TextView
-                        android:id="@+id/thursday5"
-                        style="@style/mainText"
-                        android:text="수학" />
-
-                    <TextView
-                        android:id="@+id/friday5"
-                        style="@style/mainText"
-                        android:text="수학" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
-
-                    <TextView
-                        android:id="@+id/monday6"
-                        style="@style/mainText"
-                        android:text="국어" />
-
-                    <TextView
-                        android:id="@+id/tuesday6"
-                        style="@style/mainText"
-                        android:text="수학" />
-
-                    <TextView
-                        android:id="@+id/wednesday6"
-                        style="@style/mainText"
-                        android:text="수학" />
-
-                    <TextView
-                        android:id="@+id/thursday6"
-                        style="@style/mainText"
-                        android:text="수학" />
-
-                    <TextView
-                        android:id="@+id/friday6"
-                        style="@style/mainText"
-                        android:text="수학" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
-
-                    <TextView
-                        android:id="@+id/monday7"
-                        style="@style/mainText"
-                        android:text="국어" />
-
-                    <TextView
-                        android:id="@+id/tuesday7"
-                        style="@style/mainText"
-                        android:text="수학" />
-
-                    <TextView
-                        android:id="@+id/wednesday7"
-                        style="@style/mainText"
-                        android:text="수학" />
-
-                    <TextView
-                        android:id="@+id/thursday7"
-                        style="@style/mainText"
-                        android:text="수학" />
-
-                    <TextView
-                        android:id="@+id/friday7"
-                        style="@style/mainText"
-                        android:text="수학" />
-                </TableRow>
-            </TableLayout>
-
-            <!-- 버튼 레이아웃 -->
-
-            <TableLayout
-                android:id="@+id/btn_tableLayout"
-                android:layout_width="282dp"
-                android:layout_height="370dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toBottomOf="@id/constraintLayout"
-                app:layout_constraintEnd_toEndOf="@+id/constraintLayout">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
+                        <Button
+                            android:id="@+id/btn_friday4"
+                            style="@style/main_btn" />
+                    </TableRow>
 
                     <Button
-                        android:id="@+id/btn_monday1"
-                        style="@style/main_btn" />
-
-                    <Button
-                        android:id="@+id/btn_tuesday1"
-                        style="@style/main_btn" />
-
-                    <Button
-                        android:id="@+id/btn_wednesday1"
-                        style="@style/main_btn" />
-
-                    <Button
-                        android:id="@+id/btn_thursday1"
-                        style="@style/main_btn" />
-
-                    <Button
-                        android:id="@+id/btn_friday1"
-                        style="@style/main_btn" />
-                    android:text="수학" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
-
-                    <Button
-                        android:id="@+id/btn_monday2"
-                        style="@style/main_btn" />
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_gravity="center"
+                        android:background="#00ff0000" />
 
-                    <Button
-                        android:id="@+id/btn_tuesday2"
-                        style="@style/main_btn" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
 
-                    <Button
-                        android:id="@+id/btn_wednesday2"
-                        style="@style/main_btn" />
+                        <Button
+                            android:id="@+id/btn_monday5"
+                            style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_thursday2"
-                        style="@style/main_btn" />
+                        <Button
+                            android:id="@+id/btn_tuesday5"
+                            style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_friday2"
-                        style="@style/main_btn" />
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
+                        <Button
+                            android:id="@+id/btn_wednesday5"
+                            style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_monday3"
-                        style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_tuesday3"
-                        style="@style/main_btn" />
+                        <Button
+                            android:id="@+id/btn_thursday5"
+                            style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_wednesday3"
-                        style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_thursday3"
-                        style="@style/main_btn" />
+                        <Button
+                            android:id="@+id/btn_friday5"
+                            style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_friday3"
-                        style="@style/main_btn" />
-                </TableRow>
+                    </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
 
-                    <Button
-                        android:id="@+id/btn_monday4"
-                        style="@style/main_btn" />
+                        <Button
+                            android:id="@+id/btn_monday6"
+                            style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_tuesday4"
-                        style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_wednesday4"
-                        style="@style/main_btn"
-                        android:layout_width="59dp" />
+                        <Button
+                            android:id="@+id/btn_tuesday6"
+                            style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_thursday4"
-                        style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_friday4"
-                        style="@style/main_btn" />
-                </TableRow>
+                        <Button
+                            android:id="@+id/btn_wednesday6"
+                            style="@style/main_btn" />
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:layout_gravity="center"
-                    android:background="#00ff0000" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
+                        <Button
+                            android:id="@+id/btn_thursday6"
+                            style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_monday5"
-                        style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_tuesday5"
-                        style="@style/main_btn" />
+                        <Button
+                            android:id="@+id/btn_friday6"
+                            style="@style/main_btn" />
 
+                    </TableRow>
 
-                    <Button
-                        android:id="@+id/btn_wednesday5"
-                        style="@style/main_btn" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
 
+                        <Button
+                            android:id="@+id/btn_monday7"
+                            style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_thursday5"
-                        style="@style/main_btn" />
 
+                        <Button
+                            android:id="@+id/btn_tuesday7"
+                            style="@style/main_btn" />
 
-                    <Button
-                        android:id="@+id/btn_friday5"
-                        style="@style/main_btn" />
 
-                </TableRow>
+                        <Button
+                            android:id="@+id/btn_wednesday7"
+                            style="@style/main_btn" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
 
-                    <Button
-                        android:id="@+id/btn_monday6"
-                        style="@style/main_btn" />
+                        <Button
+                            android:id="@+id/btn_thursday7"
+                            style="@style/main_btn" />
 
 
-                    <Button
-                        android:id="@+id/btn_tuesday6"
-                        style="@style/main_btn" />
+                        <Button
+                            android:id="@+id/btn_friday7"
+                            style="@style/main_btn" />
 
+                    </TableRow>
+                </TableLayout>
 
-                    <Button
-                        android:id="@+id/btn_wednesday6"
-                        style="@style/main_btn" />
+                <LinearLayout
+                    android:id="@+id/linearLayout_width_line"
+                    android:layout_width="282dp"
+                    android:layout_height="370dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
+                    app:layout_constraintEnd_toEndOf="@+id/tableLayout"
+                    app:layout_constraintStart_toStartOf="@+id/tableLayout">
 
+                    <View style="@style/widthLine" />
 
-                    <Button
-                        android:id="@+id/btn_thursday6"
-                        style="@style/main_btn" />
+                    <View
+                        style="@style/widthLine"
+                        android:layout_marginTop="45dp" />
 
+                    <View
+                        style="@style/widthLine"
+                        android:layout_marginTop="45dp" />
 
-                    <Button
-                        android:id="@+id/btn_friday6"
-                        style="@style/main_btn" />
+                    <View
+                        style="@style/widthLine"
+                        android:layout_marginTop="45dp" />
 
-                </TableRow>
+                    <View
+                        style="@style/widthLine"
+                        android:layout_marginTop="45dp" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp">
+                    <View
+                        style="@style/widthLine"
+                        android:layout_marginTop="45dp" />
 
-                    <Button
-                        android:id="@+id/btn_monday7"
-                        style="@style/main_btn" />
+                    <View
+                        style="@style/widthLine"
+                        android:layout_marginTop="45dp" />
 
+                    <View
+                        style="@style/widthLine"
+                        android:layout_marginTop="45dp" />
 
-                    <Button
-                        android:id="@+id/btn_tuesday7"
-                        style="@style/main_btn" />
+                    <View
+                        style="@style/widthLine"
+                        android:layout_marginTop="45dp" />
+                </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/linearLayout_vertical_line"
+                    android:layout_width="282dp"
+                    android:layout_height="370dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
+                    app:layout_constraintEnd_toEndOf="@+id/tableLayout"
+                    app:layout_constraintStart_toStartOf="@+id/tableLayout"
+                    app:layout_constraintTop_toTopOf="@+id/tableLayout">
 
-                    <Button
-                        android:id="@+id/btn_wednesday7"
-                        style="@style/main_btn" />
+                    <View style="@style/verticalLineAll" />
 
+                    <View
+                        style="@style/verticalLineTop"
+                        android:layout_marginStart="54dp" />
 
-                    <Button
-                        android:id="@+id/btn_thursday7"
-                        style="@style/main_btn" />
+                    <View style="@style/verticalLineBottom" />
 
+                    <View
+                        style="@style/verticalLineTop"
+                        android:layout_marginStart="54dp" />
 
-                    <Button
-                        android:id="@+id/btn_friday7"
-                        style="@style/main_btn" />
+                    <View style="@style/verticalLineBottom" />
 
-                </TableRow>
-            </TableLayout>
+                    <View
+                        style="@style/verticalLineTop"
+                        android:layout_marginStart="54dp" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout_width_line"
-                android:layout_width="282dp"
-                android:layout_height="370dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
-                app:layout_constraintEnd_toEndOf="@+id/tableLayout"
-                app:layout_constraintStart_toStartOf="@+id/tableLayout">
+                    <View style="@style/verticalLineBottom" />
 
-                <View style="@style/widthLine" />
+                    <View
+                        style="@style/verticalLineTop"
+                        android:layout_marginStart="54dp" />
 
-                <View
-                    style="@style/widthLine"
-                    android:layout_marginTop="45dp" />
+                    <View style="@style/verticalLineBottom" />
 
-                <View
-                    style="@style/widthLine"
-                    android:layout_marginTop="45dp" />
+                    <View
+                        style="@style/verticalLineAll"
+                        android:layout_marginStart="54dp" />
 
-                <View
-                    style="@style/widthLine"
-                    android:layout_marginTop="45dp" />
+                </LinearLayout>
 
-                <View
-                    style="@style/widthLine"
-                    android:layout_marginTop="45dp" />
-
-                <View
-                    style="@style/widthLine"
-                    android:layout_marginTop="45dp" />
-
-                <View
-                    style="@style/widthLine"
-                    android:layout_marginTop="45dp" />
-
-                <View
-                    style="@style/widthLine"
-                    android:layout_marginTop="45dp" />
-
-                <View
-                    style="@style/widthLine"
-                    android:layout_marginTop="45dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout_vertical_line"
-                android:layout_width="282dp"
-                android:layout_height="370dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
-                app:layout_constraintEnd_toEndOf="@+id/tableLayout"
-                app:layout_constraintStart_toStartOf="@+id/tableLayout"
-                app:layout_constraintTop_toTopOf="@+id/tableLayout">
-
-                <View style="@style/verticalLineAll" />
-
-                <View
-                    style="@style/verticalLineTop"
-                    android:layout_marginStart="54dp" />
-
-                <View style="@style/verticalLineBottom" />
-
-                <View
-                    style="@style/verticalLineTop"
-                    android:layout_marginStart="54dp" />
-
-                <View style="@style/verticalLineBottom" />
-
-                <View
-                    style="@style/verticalLineTop"
-                    android:layout_marginStart="54dp" />
-
-                <View style="@style/verticalLineBottom" />
-
-                <View
-                    style="@style/verticalLineTop"
-                    android:layout_marginStart="54dp" />
-
-                <View style="@style/verticalLineBottom" />
-
-                <View
-                    style="@style/verticalLineAll"
-                    android:layout_marginStart="54dp" />
-
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/drag_view"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/main_sliding_up_panel_background"
+            android:clickable="true"
+            android:focusable="false"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sliding_panel_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
 </layout>

@@ -8,8 +8,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.seonsijo"
-        minSdk 26
-        targetSdk 32
+        minSdk 28
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -35,6 +35,9 @@ android {
 }
 
 dependencies {
+
+    //슬라이딩 레이아웃
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
