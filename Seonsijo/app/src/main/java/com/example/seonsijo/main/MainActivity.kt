@@ -1,12 +1,11 @@
 package com.example.seonsijo.main
 
 import android.content.Intent
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.seonsijo.R
-import com.example.seonsijo.TestListActivity
+import com.example.seonsijo.testlist.TestListActivity
 import com.example.seonsijo.base.BaseActivity
 import com.example.seonsijo.databinding.ActivityMainBinding
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
@@ -69,7 +68,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>
     }
 
     private fun gotoTestListActivity(textView: TextView){
-        val intent = Intent(applicationContext,TestListActivity::class.java)
+        val intent = Intent(applicationContext, TestListActivity::class.java)
         intent.putExtra("subject",textView.text.toString())
 
         startActivity(intent)

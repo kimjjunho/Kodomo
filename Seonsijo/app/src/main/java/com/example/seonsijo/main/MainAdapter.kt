@@ -20,8 +20,6 @@ class MainAdapter(
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        val itemList = mainList[position]
-
         holder.tvItem.text = mainList[position]
 
         holder.apply { bind(position) }
