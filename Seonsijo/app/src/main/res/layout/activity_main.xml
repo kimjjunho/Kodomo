@@ -715,20 +715,26 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/drag_view"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:background="@drawable/main_sliding_up_panel_background"
+            android:layout_height="match_parent"
             android:clickable="true"
             android:focusable="false"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/sliding_panel_recyclerview"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="250dp"
+                android:background="@drawable/main_sliding_up_panel_background"
+                app:layout_constraintBottom_toBottomOf="parent">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/sliding_panel_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
