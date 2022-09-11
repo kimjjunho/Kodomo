@@ -68,6 +68,19 @@
                 app:layout_constraintStart_toEndOf="@+id/tv_class"
                 app:layout_constraintTop_toTopOf="@+id/tv_class" />
 
+            <ImageButton
+                android:id="@+id/btn_alarm"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/main_btn_bell"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_class_num"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+                app:layout_constraintTop_toTopOf="@+id/btn_class_num" />
+
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="330dp"

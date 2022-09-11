@@ -1,9 +1,12 @@
 package com.example.seonsijo.main
 
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.seonsijo.AlarmActivity
 import com.example.seonsijo.R
 import com.example.seonsijo.testlist.TestListActivity
 import com.example.seonsijo.base.BaseActivity
@@ -15,6 +18,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>
 
     override fun initView() {
 
+        classTextChange()
+        gradeTextChange()
+
         useRecyclerView()
 
         tableClickEvent()
@@ -23,6 +29,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>
             btnBeforeWeek.setOnClickListener {}
 
             btnAfterWeek.setOnClickListener {}
+
+            btnAlarm.setOnClickListener {
+                startActivity(Intent(this@MainActivity, AlarmActivity::class.java))
+            }
         }
     }
 
@@ -59,6 +69,30 @@ class MainActivity : BaseActivity<ActivityMainBinding>
             gotoT(btnFriday5, friday5)
 
         }
+    }
+
+    private fun classTextChange(){
+        binding.tvClass.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+    }
+
+    private fun gradeTextChange(){
+        binding.tvGrade.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
     }
 
     private fun gotoT(button: Button, textView: TextView){
