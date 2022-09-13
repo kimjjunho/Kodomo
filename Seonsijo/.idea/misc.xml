@@ -13,9 +13,12 @@
         <entry key="app/src/main/res/drawable/main_btn_class.xml" value="0.203" />
         <entry key="app/src/main/res/drawable/main_sliding_up_panel_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/main_text_style.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/splash_button.xml" value="0.1955" />
+        <entry key="app/src/main/res/drawable/splash_yellow.xml" value="0.12" />
         <entry key="app/src/main/res/drawable/test_list_btn_before.xml" value="0.2395" />
-        <entry key="app/src/main/res/layout/activity_alarm.xml" value="0.3182291666666667" />
+        <entry key="app/src/main/res/layout/activity_alarm.xml" value="0.2823822021484375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20515594482421878" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.23891743574992258" />
         <entry key="app/src/main/res/layout/activity_test.xml" value="0.3182291666666667" />
         <entry key="app/src/main/res/layout/activity_test_list.xml" value="0.24868890671502986" />
         <entry key="app/src/main/res/layout/item_main.xml" value="0.37168141592920356" />

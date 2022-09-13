@@ -39,6 +39,9 @@ dependencies {
     //슬라이딩 레이아웃
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
+    //텍스트 깜빡 깜빡
+    implementation 'com.daimajia.androidanimations:library:2.4@aar'
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'

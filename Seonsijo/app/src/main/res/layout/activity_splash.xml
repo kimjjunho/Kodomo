@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SplashActivity">
+
+        <ImageView
+            android:id="@+id/image_black"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            android:layout_marginBottom="150dp"
+            android:src="@drawable/splash_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_yellow"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            android:layout_marginBottom="150dp"
+            android:src="@drawable/splash_yellow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.498" />
+
+        <TextView
+            android:id="@+id/tv_kodomo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="K    O    D    O    M    O"
+            android:textSize="20sp"
+            android:textColor="@color/black24"
+            android:fontFamily="@font/pretendard_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_black" />
+
+        <Button
+            android:id="@+id/splash_button"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/splash_button"
+            android:fontFamily="@font/pretendard_semibold"
+            android:text="시작하기"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_kodomo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
