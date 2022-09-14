@@ -1,24 +1,31 @@
 package com.example.seonsijo.main
 
+import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.seonsijo.AlarmActivity
+import com.example.seonsijo.MyApplication
 import com.example.seonsijo.R
 import com.example.seonsijo.testlist.TestListActivity
 import com.example.seonsijo.base.BaseActivity
+import com.example.seonsijo.classNum
 import com.example.seonsijo.databinding.ActivityMainBinding
+import com.example.seonsijo.gradeClassCheck
+import com.example.seonsijo.gradeNum
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
 class MainActivity : BaseActivity<ActivityMainBinding>
     (R.layout.activity_main) {
 
     override fun initView() {
-
         classTextChange()
+
         gradeTextChange()
 
         useRecyclerView()
@@ -26,6 +33,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>
         tableClickEvent()
 
         binding.run {
+
+            MyApplication.prefs.setBoolean("check",true)
+
+            tvGrade.text = gradeNum.toString() + "학년"
+            tvClass.text = classNum.toString() + "반"
+
+            MyApplication.prefs.setString("classNum", classNum.toString())
+            MyApplication.prefs.setString("gradeNum", gradeNum.toString())
+
             btnBeforeWeek.setOnClickListener {}
 
             btnAfterWeek.setOnClickListener {}
@@ -76,7 +92,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
+                classNum = binding.tvClass.text.toString()[0].toString().toInt()
+                MyApplication.prefs.setString("classNum", classNum.toString())
             }
 
             override fun afterTextChanged(p0: Editable?) {}
@@ -88,7 +105,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
+                gradeNum = binding.tvGrade.text.toString()[0].toString().toInt()
+                MyApplication.prefs.setString("gradeNum", gradeNum.toString())
             }
 
             override fun afterTextChanged(p0: Editable?) {}

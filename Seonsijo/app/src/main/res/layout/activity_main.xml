@@ -438,7 +438,8 @@
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="46dp">
+                        android:layout_height="46dp"
+                        android:stretchColumns="1">
 
                         <Button
                             android:id="@+id/btn_monday1"
@@ -582,21 +583,17 @@
                             android:id="@+id/btn_monday6"
                             style="@style/main_btn" />
 
-
                         <Button
                             android:id="@+id/btn_tuesday6"
                             style="@style/main_btn" />
-
 
                         <Button
                             android:id="@+id/btn_wednesday6"
                             style="@style/main_btn" />
 
-
                         <Button
                             android:id="@+id/btn_thursday6"
                             style="@style/main_btn" />
-
 
                         <Button
                             android:id="@+id/btn_friday6"

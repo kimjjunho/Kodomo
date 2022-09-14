@@ -42,11 +42,12 @@
     </style>
 
     <style name="day_of_week_text">
-        <item name="android:layout_width">55.5dp</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/gray7B</item>
         <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
     <style name="main_btn">
@@ -54,4 +55,22 @@
         <item name="android:layout_height">46dp</item>
         <item name="android:background">#00ff0000</item>
     </style>
+
+    <style name="signup_text_background">
+        <item name="android:layout_width">310dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/signup_text_background</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black24</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="radio_button">
+        <item name="colorAccent">@color/main_color</item>
+        <item name="colorControlNormal">@color/grayE7</item>
+    </style>
+
 </resources>
