@@ -7,9 +7,6 @@ import com.example.domain.exception.ConflictException
 import com.example.domain.exception.ForbiddenException
 import com.example.domain.exception.NotFoundException
 import com.example.domain.exception.ServerException
-import com.example.domain.exception.TimeoutException
-import com.example.domain.exception.TooManyRequestException
-import com.example.domain.exception.UnauthorizedException
 import com.example.seonsijo.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

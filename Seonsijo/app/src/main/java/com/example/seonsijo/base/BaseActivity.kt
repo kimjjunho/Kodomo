@@ -6,6 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import dagger.hilt.android.HiltAndroidApp
 
 abstract class BaseActivity<B: ViewDataBinding>(
     @LayoutRes private val layoutId: Int

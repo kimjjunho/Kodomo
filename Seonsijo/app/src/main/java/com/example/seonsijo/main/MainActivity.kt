@@ -68,30 +68,44 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
             gotoT(btnMonday3, monday3)
             gotoT(btnMonday4, monday4)
             gotoT(btnMonday5, monday5)
+            gotoT(btnMonday6, monday6)
+            gotoT(btnMonday7, monday7)
+
 
             gotoT(btnTuesday1, tuesday1)
             gotoT(btnTuesday2, tuesday2)
             gotoT(btnTuesday3, tuesday3)
             gotoT(btnTuesday4, tuesday4)
             gotoT(btnTuesday5, tuesday5)
+            gotoT(btnTuesday6, tuesday6)
+            gotoT(btnTuesday7, tuesday7)
+
 
             gotoT(btnWednesday1, wednesday1)
             gotoT(btnWednesday2, wednesday2)
             gotoT(btnWednesday3, wednesday3)
             gotoT(btnWednesday4, wednesday4)
             gotoT(btnWednesday5, wednesday5)
+            gotoT(btnWednesday6, wednesday6)
+            gotoT(btnWednesday7, wednesday7)
+
 
             gotoT(btnThursday1, thursday1)
             gotoT(btnThursday2, thursday2)
             gotoT(btnThursday3, thursday3)
             gotoT(btnThursday4, thursday4)
             gotoT(btnThursday5, thursday5)
+            gotoT(btnThursday6, thursday6)
+            gotoT(btnThursday7, thursday7)
+
 
             gotoT(btnFriday1, friday1)
             gotoT(btnFriday2, friday2)
             gotoT(btnFriday3, friday3)
             gotoT(btnFriday4, friday4)
             gotoT(btnFriday5, friday5)
+            gotoT(btnFriday6, friday6)
+            gotoT(btnFriday7, friday7)
 
         }
     }
