@@ -1,7 +1,6 @@
-package com.example.seonsijo
+package com.example.seonsijo.test
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.example.seonsijo.R
 import com.example.seonsijo.base.BaseActivity
 import com.example.seonsijo.databinding.ActivityTestBinding
 

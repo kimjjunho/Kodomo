@@ -1,13 +1,14 @@
-package com.example.seonsijo
+package com.example.seonsijo.util
 
-import android.app.Application
 import android.content.Intent
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.lifecycle.MutableLiveData
+import com.example.seonsijo.R
 import com.example.seonsijo.base.BaseActivity
 import com.example.seonsijo.databinding.ActivitySplashBinding
 import com.example.seonsijo.main.MainActivity
+import com.example.seonsijo.signup.SignUpActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -16,7 +17,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     override fun initView() {
 
-        val anim = AnimationUtils.loadAnimation(this,R.anim.splash_yellow_animation)
+        val anim = AnimationUtils.loadAnimation(this, R.anim.splash_yellow_animation)
 
         var codomo : MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
@@ -41,7 +42,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                 if(gradeClassCheck){
                     startActivity(Intent(applicationContext,MainActivity::class.java))
                 }else{
-                    startActivity(Intent(applicationContext,SignUpActivity::class.java))
+                    startActivity(Intent(applicationContext, SignUpActivity::class.java))
                 }
             }
         }

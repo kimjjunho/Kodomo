@@ -1,11 +1,8 @@
-package com.example.seonsijo
+package com.example.seonsijo.signup
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import com.example.seonsijo.R
 import com.example.seonsijo.base.BaseFragment
+import com.example.seonsijo.util.classNum
 import com.example.seonsijo.databinding.FragmentClassCheckBinding
 
 

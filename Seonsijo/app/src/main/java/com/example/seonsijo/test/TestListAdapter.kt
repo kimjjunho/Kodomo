@@ -1,4 +1,4 @@
-package com.example.seonsijo.testlist
+package com.example.seonsijo.test
 
 import android.view.LayoutInflater
 import android.view.View

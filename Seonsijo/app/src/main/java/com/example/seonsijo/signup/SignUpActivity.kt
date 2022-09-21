@@ -1,13 +1,10 @@
-package com.example.seonsijo
+package com.example.seonsijo.signup
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.seonsijo.R
 import com.example.seonsijo.base.BaseActivity
 import com.example.seonsijo.databinding.ActivitySignUpBinding
-import com.example.seonsijo.databinding.FragmentGradeCheckBinding
 import com.example.seonsijo.main.MainActivity
 
 class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sign_up){
@@ -20,7 +17,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         gradeNum.value = 1
         classNum.value = 1
 
-        supportFragmentManager.beginTransaction().replace(R.id.frame,GradeCheckFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.frame, GradeCheckFragment()).commit()
 
         binding.run {
 
@@ -35,7 +32,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
             btnNext.setOnClickListener {
                 if(supportFragmentManager.backStackEntryCount == 0){
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame,ClassCheckFragment())
+                        .replace(R.id.frame, ClassCheckFragment())
                         .addToBackStack("grade")
                         .commit()
 

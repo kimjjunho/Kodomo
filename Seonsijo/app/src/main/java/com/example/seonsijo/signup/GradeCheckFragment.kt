@@ -1,7 +1,10 @@
-package com.example.seonsijo
+package com.example.seonsijo.signup
 
+import com.example.seonsijo.R
 import com.example.seonsijo.base.BaseFragment
+import com.example.seonsijo.util.classNum
 import com.example.seonsijo.databinding.FragmentGradeCheckBinding
+import com.example.seonsijo.util.gradeNum
 
 class GradeCheckFragment : BaseFragment<FragmentGradeCheckBinding>(R.layout.fragment_grade_check){
 

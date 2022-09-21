@@ -1,9 +1,8 @@
-package com.example.seonsijo.testlist
+package com.example.seonsijo.test
 
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.seonsijo.R
-import com.example.seonsijo.TestActivity
 import com.example.seonsijo.base.BaseActivity
 import com.example.seonsijo.databinding.ActivityTestListBinding
 
@@ -11,7 +10,7 @@ class TestListActivity : BaseActivity<ActivityTestListBinding>
     (R.layout.activity_test_list) {
 
     private val testList = arrayListOf<TestListData>().apply {
-        add(TestListData("제목","이름"))
+        add(TestListData(1,"제목","이름"))
     }
 
     override fun initView() {
@@ -34,7 +33,7 @@ class TestListActivity : BaseActivity<ActivityTestListBinding>
     override fun observeEvent() {}
 
     fun gotoTestActivity(title: String){
-        val intent = Intent(applicationContext,TestActivity::class.java)
+        val intent = Intent(applicationContext, TestActivity::class.java)
         intent.putExtra("title",title)
 
         startActivity(intent)

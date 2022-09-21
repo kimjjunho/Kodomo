@@ -1,9 +1,8 @@
-package com.example.seonsijo
+package com.example.seonsijo.util
 
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.databinding.BindingAdapter
 
 var gradeNum = 1
 var classNum = 1
