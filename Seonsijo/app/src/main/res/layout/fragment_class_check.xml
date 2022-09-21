@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="215dp"
-        tools:context=".ClassCheckFragment"
+        tools:context=".signup.ClassCheckFragment"
         android:orientation="vertical"
         android:gravity="center_horizontal">
 

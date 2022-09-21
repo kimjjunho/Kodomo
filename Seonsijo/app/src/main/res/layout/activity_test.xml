@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".TestActivity">
+        tools:context=".test.TestActivity">
 
         <ImageButton
             android:id="@+id/btn_back"
@@ -25,12 +25,15 @@
             android:layout_height="21dp"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/pretendard_semibold"
-            android:text="수행 평가 일정"
+            android:text="수행평가"
             android:textColor="@color/black24"
             android:textSize="18sp"
+            android:includeFontPadding="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

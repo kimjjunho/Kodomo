@@ -80,6 +80,17 @@
                 app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
                 app:layout_constraintTop_toTopOf="@+id/btn_class_num" />
 
+            <ImageView
+                android:id="@+id/image_alarm_red"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/main_image_alram_red"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/btn_alarm"
+                app:layout_constraintTop_toTopOf="@+id/btn_alarm" />
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
