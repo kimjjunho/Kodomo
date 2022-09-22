@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.seonsijo"
-        minSdk 21
+        minSdk 26
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -40,9 +40,13 @@ android {
     packagingOptions {
         exclude 'META-INF/gradle/incremental.annotation.processors'
     }
+    hilt {
+        enableAggregatingTask = true
+    }
 }
 
 dependencies {
+    implementation project(":di")
     implementation project(":domain")
 
     //슬라이딩 레이아웃
