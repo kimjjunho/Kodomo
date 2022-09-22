@@ -1,5 +1,7 @@
 package com.example.seonsijo.main.alarm
 
+import android.annotation.SuppressLint
+import android.graphics.Insets.add
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,26 +13,25 @@ import com.example.seonsijo.main.alarm.adapter.AlarmSwipeHelper
 
 class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm){
 
-    private lateinit var alarmList: List<AlarmData>
+    private val alarmList: ArrayList<AlarmData> = ArrayList()
 
     private val alarmAdapter : AlarmAdapter by lazy {
-        AlarmAdapter(alarmList)
+        AlarmAdapter(alarmList,this)
     }
 
     override fun initView() {
 
-        alarmList = listOf(AlarmData(1,"과학","과학 알림이 새로 왔어요 ㅎㅎ"))
+        alarmList.add(AlarmData(1,"과학","과학 알림이 새로 왔어요 ㅎㅎ"))
 
         binding.run {
 
             alarmRv.run {
                 layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-                addItemDecoration(DividerItemDecoration(context,DividerItemDecoration.VERTICAL))
                 adapter = alarmAdapter
             }
 
             val swipeHelper = AlarmSwipeHelper(alarmAdapter).apply {
-                setClamp(resources.displayMetrics.widthPixels.toFloat()/5)
+                setClamp(resources.displayMetrics.widthPixels.toFloat()/7)
             }
             ItemTouchHelper(swipeHelper).attachToRecyclerView(alarmRv)
 
@@ -42,5 +43,9 @@ class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm
 
     override fun observeEvent() {
 
+    }
+
+    fun removeItem(position: Int){
+        alarmList.removeAt(position)
     }
 }

@@ -13,10 +13,10 @@
         <ImageButton
             android:id="@+id/btn_back"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="20dp"
-            android:layout_height="32dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginStart="20dp"
-            android:src="@drawable/test_list_btn_before"
+            android:src="@drawable/all_btn_before"
             app:layout_constraintBottom_toBottomOf="@+id/tv_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_title" />

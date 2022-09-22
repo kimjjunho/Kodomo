@@ -7,11 +7,14 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.seonsijo.R
+import com.example.seonsijo.main.alarm.AlarmActivity
 import com.example.seonsijo.main.alarm.AlarmData
 import java.util.*
+import kotlin.collections.ArrayList
 
 class AlarmAdapter(
-    private val alarmList: List<AlarmData>
+    private val alarmList: ArrayList<AlarmData>,
+    private val alarmActivity: AlarmActivity
 ): RecyclerView.Adapter<AlarmAdapter.CustomViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
@@ -24,6 +27,8 @@ class AlarmAdapter(
         holder.tvItemName.text = alarmList[position].content
 
         holder.btnItemDelete.setOnClickListener {
+            alarmActivity.removeItem(position)
+            notifyItemRemoved(position)
         }
     }
 
