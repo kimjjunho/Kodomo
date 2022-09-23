@@ -7,7 +7,7 @@ import android.text.TextWatcher
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.domain.entity.ScheduleRequestEntity
+import com.example.domain.entity.schedule.ScheduleRequestEntity
 import com.example.seonsijo.main.alarm.AlarmActivity
 import com.example.seonsijo.util.MyApplication
 import com.example.seonsijo.R
@@ -208,6 +208,7 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                     is MainViewModel.Event.Server -> {
                         showToastShort("서버가 닫혀 있습니다")
                     }
+                    else -> showToastShort("알 수 없는 오류")
                 }
             }
         }

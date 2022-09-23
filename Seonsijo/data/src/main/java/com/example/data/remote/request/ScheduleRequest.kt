@@ -1,6 +1,6 @@
 package com.example.data.remote.request
 
-import com.example.domain.entity.ScheduleRequestEntity
+import com.example.domain.entity.schedule.ScheduleRequestEntity
 
 data class ScheduleRequest(
     val grade: Int,

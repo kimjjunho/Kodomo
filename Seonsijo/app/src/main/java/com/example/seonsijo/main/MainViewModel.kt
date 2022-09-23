@@ -1,7 +1,7 @@
 package com.example.seonsijo.main
 
-import com.example.domain.ScheduleUseCase
-import com.example.domain.entity.ScheduleRequestEntity
+import com.example.domain.usecase.schedule.ScheduleUseCase
+import com.example.domain.entity.schedule.ScheduleRequestEntity
 import com.example.domain.exception.BadRequestException
 import com.example.domain.exception.ConflictException
 import com.example.domain.exception.ForbiddenException

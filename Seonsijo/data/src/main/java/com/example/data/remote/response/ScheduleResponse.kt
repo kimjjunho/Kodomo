@@ -1,6 +1,6 @@
 package com.example.data.remote.response
 
-import com.example.domain.entity.ScheduleResponseEntity
+import com.example.domain.entity.schedule.ScheduleResponseEntity
 import com.google.gson.annotations.SerializedName
 
 data class ScheduleResponse(

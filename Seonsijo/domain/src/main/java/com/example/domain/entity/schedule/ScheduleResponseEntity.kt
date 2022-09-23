@@ -1,4 +1,4 @@
-package com.example.domain.entity
+package com.example.domain.entity.schedule
 
 data class ScheduleResponseEntity(
     val monday: String,
