@@ -27,7 +27,7 @@ class AlarmAdapter(
         holder.tvItemName.text = alarmList[position].content
 
         holder.btnItemDelete.setOnClickListener {
-            alarmActivity.removeItem(position)
+            alarmActivity.removeItem(position,alarmList[position].alarm_id)
             notifyItemRemoved(position)
         }
     }

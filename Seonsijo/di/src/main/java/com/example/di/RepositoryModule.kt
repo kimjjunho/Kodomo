@@ -1,6 +1,8 @@
 package com.example.di
 
+import com.example.data.repository.AlarmRepositoryImpl
 import com.example.data.repository.ScheduleRepositoryImpl
+import com.example.domain.respository.AlarmRepository
 import com.example.domain.respository.ScheduleRepository
 import dagger.Binds
 import dagger.Module
@@ -15,4 +17,9 @@ abstract class RepositoryModule {
     abstract fun bindScheduleRepository(
         scheduleRepositoryImpl: ScheduleRepositoryImpl
     ): ScheduleRepository
+
+    @Binds
+    abstract fun bindAlarmRepository(
+        alarmRepositoryImpl: AlarmRepositoryImpl
+    ): AlarmRepository
 }

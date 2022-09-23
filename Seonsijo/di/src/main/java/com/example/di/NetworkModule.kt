@@ -1,6 +1,7 @@
 package com.example.di
 
 import android.util.Log
+import com.example.data.remote.api.AlarmAPI
 import com.example.data.remote.api.ScheduleAPI
 import dagger.Module
 import dagger.Provides
@@ -46,4 +47,11 @@ object NetworkModule {
         retrofit: Retrofit
     ): ScheduleAPI =
         retrofit.create(ScheduleAPI::class.java)
+
+    @Singleton
+    @Provides
+    fun provideAlarmAPI(
+        retrofit: Retrofit
+    ): AlarmAPI =
+        retrofit.create(AlarmAPI::class.java)
 }

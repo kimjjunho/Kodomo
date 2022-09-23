@@ -1,5 +1,7 @@
 package com.example.di
 
+import com.example.data.remote.datasource.RemoteAlarmDataSource
+import com.example.data.remote.datasource.RemoteAlarmDataSourceImpl
 import com.example.data.remote.datasource.RemoteScheduleDataSourceImpl
 import com.example.data.remote.datasource.RemoteScheduleDataSource
 import dagger.Binds
@@ -12,7 +14,12 @@ import dagger.hilt.components.SingletonComponent
 abstract class RemoteDataSourceModule {
 
     @Binds
-    abstract fun bindRemoteDataModule(
+    abstract fun bindRemoteScheduleDataModule(
         remoteScheduleDataSourceImpl: RemoteScheduleDataSourceImpl
     ): RemoteScheduleDataSource
+
+    @Binds
+    abstract fun bindRemoteAlarmDataModule(
+        remoteAlarmDataSourceImpl: RemoteAlarmDataSourceImpl
+    ): RemoteAlarmDataSource
 }

@@ -1,17 +1,23 @@
 package com.example.seonsijo.main.alarm
 
-import android.annotation.SuppressLint
-import android.graphics.Insets.add
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.entity.alarm.DeleteAlarmRequestEntity
+import com.example.domain.entity.alarm.GetAlarmRequestEntity
 import com.example.seonsijo.R
 import com.example.seonsijo.base.BaseActivity
 import com.example.seonsijo.databinding.ActivityAlarmBinding
 import com.example.seonsijo.main.alarm.adapter.AlarmAdapter
 import com.example.seonsijo.main.alarm.adapter.AlarmSwipeHelper
+import com.example.seonsijo.util.classNum
+import com.example.seonsijo.util.gradeNum
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm){
+
+    private val alarmViewModel: AlarmViewModel by viewModels()
 
     private val alarmList: ArrayList<AlarmData> = ArrayList()
 
@@ -20,6 +26,7 @@ class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm
     }
 
     override fun initView() {
+        alarmViewModel.getAlarm(GetAlarmRequestEntity(gradeNum,classNum))
 
         alarmList.add(AlarmData(1,"과학","과학 알림이 새로 왔어요 ㅎㅎ"))
 
@@ -45,7 +52,13 @@ class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm
 
     }
 
-    fun removeItem(position: Int){
+    fun removeItem(position: Int, alarm_id: Long){
         alarmList.removeAt(position)
+        alarmViewModel.deleteAlarm(DeleteAlarmRequestEntity(alarm_id))
+    }
+
+    override fun onResume() {
+        super.onResume()
+        alarmViewModel.getAlarm(GetAlarmRequestEntity(gradeNum,classNum))
     }
 }
