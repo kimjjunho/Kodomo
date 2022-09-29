@@ -4,6 +4,7 @@ import androidx.activity.viewModels
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,6 +41,8 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
         useRecyclerView()
 
         tableClickEvent()
+
+        mainViewModel.autoSchedule()
 
         binding.run {
 
@@ -195,9 +198,6 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
         repeatOnStarted {
             mainViewModel.eventFlow.collect{
                 when(it){
-                    is MainViewModel.Event.Success -> {
-                        showToastShort("성공")
-                    }
                     is MainViewModel.Event.BadRequest -> {
                         showToastShort("학년, 반이 잘 적용되었는지 확인해주세요")
                     }
@@ -214,9 +214,5 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                 }
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 }

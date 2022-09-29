@@ -5,4 +5,6 @@ import com.example.domain.entity.schedule.ScheduleEntity
 
 interface ScheduleRepository {
     suspend fun getSchedule(scheduleParam: ScheduleParam) : ScheduleEntity
+
+    suspend fun autoSchedule(): ScheduleEntity
 }

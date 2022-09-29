@@ -1,5 +1,6 @@
 package com.example.data.repository
 
+import com.example.data.local.datasource.LocalScheduleDataSource
 import com.example.data.remote.datasource.RemoteScheduleDataSource
 import com.example.domain.entity.schedule.ScheduleParam
 import com.example.domain.entity.schedule.ScheduleEntity
@@ -7,8 +8,15 @@ import com.example.domain.respository.ScheduleRepository
 import javax.inject.Inject
 
 class ScheduleRepositoryImpl @Inject constructor(
-    private val remoteScheduleDataSource: RemoteScheduleDataSource
+    private val remoteScheduleDataSource: RemoteScheduleDataSource,
+    private val localScheduleDataSource: LocalScheduleDataSource
 ): ScheduleRepository {
-    override suspend fun getSchedule(scheduleParam: ScheduleParam): ScheduleEntity =
-        remoteScheduleDataSource.getSchedule(scheduleParam)
+
+    override suspend fun getSchedule(scheduleParam: ScheduleParam): ScheduleEntity {
+        localScheduleDataSource.saveSchedule(remoteScheduleDataSource.getSchedule(scheduleParam))
+        return remoteScheduleDataSource.getSchedule(scheduleParam)
+    }
+
+    override suspend fun autoSchedule(): ScheduleEntity =
+        localScheduleDataSource.fetchSchedule()
 }
