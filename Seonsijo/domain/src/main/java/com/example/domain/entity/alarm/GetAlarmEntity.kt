@@ -1,6 +1,6 @@
 package com.example.domain.entity.alarm
 
-data class GetAlarmResponseEntity(
+data class GetAlarmEntity(
     val alarm_list: List<AlarmData>
 ) {
     data class AlarmData(
