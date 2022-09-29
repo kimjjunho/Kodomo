@@ -1,6 +1,6 @@
 package com.example.seonsijo.main.alarm
 
-import com.example.domain.entity.alarm.GetAlarmRequestEntity
+import com.example.domain.entity.alarm.GetAlarmParam
 import com.example.domain.exception.BadRequestException
 import com.example.domain.exception.ForbiddenException
 import com.example.domain.exception.NotFoundException
@@ -18,8 +18,8 @@ class AlarmViewModel @Inject constructor(
     private val deleteAlarmUseCase: DeleteAlarmUseCase
 ): BaseViewModel<AlarmViewModel.Event>() {
 
-    fun getAlarm(getAlarmRequestEntity: GetAlarmRequestEntity) = execute(
-        job = { getAlarmUseCase.execute(getAlarmRequestEntity) },
+    fun getAlarm(getAlarmParam: GetAlarmParam) = execute(
+        job = { getAlarmUseCase.execute(getAlarmParam) },
         onSuccess = { emitEvent(Event.Success) },
         onFailure = {
             when(it){

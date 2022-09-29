@@ -3,7 +3,7 @@ package com.example.seonsijo.main.alarm
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.domain.entity.alarm.GetAlarmRequestEntity
+import com.example.domain.entity.alarm.GetAlarmParam
 import com.example.seonsijo.R
 import com.example.seonsijo.base.BaseActivity
 import com.example.seonsijo.databinding.ActivityAlarmBinding
@@ -25,7 +25,7 @@ class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm
     }
 
     override fun initView() {
-        alarmViewModel.getAlarm(GetAlarmRequestEntity(gradeNum,classNum))
+        alarmViewModel.getAlarm(GetAlarmParam(gradeNum,classNum))
 
         alarmList.add(AlarmData(1,"과학","과학 알림이 새로 왔어요 ㅎㅎ"))
 
@@ -58,6 +58,6 @@ class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm
 
     override fun onResume() {
         super.onResume()
-        alarmViewModel.getAlarm(GetAlarmRequestEntity(gradeNum,classNum))
+        alarmViewModel.getAlarm(GetAlarmParam(gradeNum,classNum))
     }
 }
