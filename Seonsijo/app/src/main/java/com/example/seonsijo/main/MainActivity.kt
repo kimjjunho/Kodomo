@@ -154,7 +154,7 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
 
     private fun gotoT(button: Button, textView: TextView){
         button.setOnClickListener {
-            if(textView.text != null){
+            if(textView.text != ""){
                 gotoTestListActivity(textView)
             }
         }

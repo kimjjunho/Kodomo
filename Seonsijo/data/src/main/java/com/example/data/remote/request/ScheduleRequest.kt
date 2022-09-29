@@ -1,6 +1,7 @@
 package com.example.data.remote.request
 
-import com.example.domain.entity.schedule.ScheduleRequestEntity
+import com.example.domain.entity.schedule.ScheduleParam
+
 
 data class ScheduleRequest(
     val grade: Int,
@@ -8,7 +9,7 @@ data class ScheduleRequest(
     val date: String
 )
 
-fun ScheduleRequestEntity.toRequest() = ScheduleRequest(
+fun ScheduleParam.toRequest() = ScheduleRequest(
     grade = grade,
     class_num = class_num,
     date = date
