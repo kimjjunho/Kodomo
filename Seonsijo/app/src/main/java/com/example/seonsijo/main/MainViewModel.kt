@@ -1,7 +1,7 @@
 package com.example.seonsijo.main
 
+import com.example.domain.entity.schedule.ScheduleParam
 import com.example.domain.usecase.schedule.ScheduleUseCase
-import com.example.domain.entity.schedule.ScheduleRequestEntity
 import com.example.domain.exception.BadRequestException
 import com.example.domain.exception.ConflictException
 import com.example.domain.exception.ForbiddenException
@@ -16,8 +16,8 @@ class MainViewModel @Inject constructor(
     private val scheduleUseCase: ScheduleUseCase
 ) : BaseViewModel<MainViewModel.Event>() {
 
-    fun getSchedule(scheduleEntity: ScheduleRequestEntity) = execute(
-        job = { scheduleUseCase.execute(scheduleEntity) },
+    fun getSchedule(scheduleParam: ScheduleParam) = execute(
+        job = { scheduleUseCase.execute(scheduleParam) },
         onSuccess = { emitEvent(Event.Success) },
         onFailure = {
             when (it) {

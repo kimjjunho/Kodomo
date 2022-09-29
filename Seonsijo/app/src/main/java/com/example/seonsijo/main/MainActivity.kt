@@ -7,7 +7,7 @@ import android.text.TextWatcher
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.domain.entity.schedule.ScheduleRequestEntity
+import com.example.domain.entity.schedule.ScheduleParam
 import com.example.seonsijo.main.alarm.AlarmActivity
 import com.example.seonsijo.util.MyApplication
 import com.example.seonsijo.R
@@ -119,7 +119,7 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                 MyApplication.prefs.setString("classNum", classNum.toString())
 
                 mainViewModel.getSchedule(
-                    ScheduleRequestEntity(
+                    ScheduleParam(
                         grade = gradeNum,
                         class_num = classNum,
                         date = date
@@ -140,7 +140,7 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                 MyApplication.prefs.setString("gradeNum", gradeNum.toString())
 
                 mainViewModel.getSchedule(
-                    ScheduleRequestEntity(
+                    ScheduleParam(
                         grade = gradeNum,
                         class_num = classNum,
                         date = date

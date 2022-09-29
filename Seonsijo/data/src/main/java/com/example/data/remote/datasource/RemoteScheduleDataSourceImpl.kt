@@ -4,14 +4,14 @@ import com.example.data.remote.api.ScheduleAPI
 import com.example.data.remote.request.toRequest
 import com.example.data.remote.response.toEntity
 import com.example.data.sendHttpRequest
-import com.example.domain.entity.schedule.ScheduleRequestEntity
+import com.example.domain.entity.schedule.ScheduleParam
 import com.example.domain.entity.schedule.ScheduleResponseEntity
 import javax.inject.Inject
 
 class RemoteScheduleDataSourceImpl @Inject constructor(
     private val scheduleAPI: ScheduleAPI
 ): RemoteScheduleDataSource {
-    override suspend fun getSchedule(scheduleRequestEntity: ScheduleRequestEntity): ScheduleResponseEntity =
-        sendHttpRequest(httpRequest = { scheduleAPI.getSchedule(scheduleRequestEntity.toRequest()).toEntity() })
+    override suspend fun getSchedule(scheduleParam: ScheduleParam): ScheduleResponseEntity =
+        sendHttpRequest(httpRequest = { scheduleAPI.getSchedule(scheduleParam.toRequest()).toEntity() })
 
 }
