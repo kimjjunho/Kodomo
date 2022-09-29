@@ -11,7 +11,9 @@ import com.example.seonsijo.main.alarm.adapter.AlarmAdapter
 import com.example.seonsijo.main.alarm.adapter.AlarmSwipeHelper
 import com.example.seonsijo.util.classNum
 import com.example.seonsijo.util.gradeNum
+import com.example.seonsijo.util.repeatOnStarted
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm){
@@ -21,7 +23,7 @@ class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm
     private val alarmList: ArrayList<AlarmData> = ArrayList()
 
     private val alarmAdapter : AlarmAdapter by lazy {
-        AlarmAdapter(alarmList,this)
+        AlarmAdapter(alarmList,this, alarmViewModel)
     }
 
     override fun initView() {
@@ -48,12 +50,19 @@ class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm
     }
 
     override fun observeEvent() {
+        repeatOnStarted {
+            alarmViewModel.run {
+                deleteSuccess.observe(this@AlarmActivity){
+                    alarmList.removeAt(it)
+                    alarmAdapter.notifyItemChanged(it)
+                }
+                eventFlow.collect{
+                    when(it){
 
-    }
-
-    fun removeItem(position: Int, alarm_id: Long){
-        alarmList.removeAt(position)
-        alarmViewModel.deleteAlarm(alarm_id)
+                    }
+                }
+            }
+        }
     }
 
     override fun onResume() {
