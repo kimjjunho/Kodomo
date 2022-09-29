@@ -1,6 +1,5 @@
 package com.example.seonsijo.main.alarm
 
-import com.example.domain.entity.alarm.DeleteAlarmRequestEntity
 import com.example.domain.entity.alarm.GetAlarmRequestEntity
 import com.example.domain.exception.BadRequestException
 import com.example.domain.exception.ForbiddenException
@@ -33,8 +32,8 @@ class AlarmViewModel @Inject constructor(
         }
     )
 
-    fun deleteAlarm(deleteAlarmRequestEntity: DeleteAlarmRequestEntity) = execute(
-        job = { deleteAlarmUseCase.execute(deleteAlarmRequestEntity)},
+    fun deleteAlarm(alarm_id: Long) = execute(
+        job = { deleteAlarmUseCase.execute(alarm_id)},
         onSuccess = { emitEvent(Event.Success) },
         onFailure = {
             when(it){

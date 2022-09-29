@@ -3,7 +3,6 @@ package com.example.seonsijo.main.alarm
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.domain.entity.alarm.DeleteAlarmRequestEntity
 import com.example.domain.entity.alarm.GetAlarmRequestEntity
 import com.example.seonsijo.R
 import com.example.seonsijo.base.BaseActivity
@@ -54,7 +53,7 @@ class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm
 
     fun removeItem(position: Int, alarm_id: Long){
         alarmList.removeAt(position)
-        alarmViewModel.deleteAlarm(DeleteAlarmRequestEntity(alarm_id))
+        alarmViewModel.deleteAlarm(alarm_id)
     }
 
     override fun onResume() {

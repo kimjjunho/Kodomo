@@ -16,6 +16,6 @@ interface AlarmAPI {
 
     @DELETE("users/alarm")
     suspend fun deleteAlarm(
-        @Body deleteAlarmRequest: DeleteAlarmRequest
+        @Body alarm_id: Long
     )
 }
