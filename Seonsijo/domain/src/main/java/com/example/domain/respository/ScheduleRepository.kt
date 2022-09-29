@@ -1,8 +1,8 @@
 package com.example.domain.respository
 
 import com.example.domain.entity.schedule.ScheduleParam
-import com.example.domain.entity.schedule.ScheduleResponseEntity
+import com.example.domain.entity.schedule.ScheduleEntity
 
 interface ScheduleRepository {
-    suspend fun getSchedule(scheduleParam: ScheduleParam) : ScheduleResponseEntity
+    suspend fun getSchedule(scheduleParam: ScheduleParam) : ScheduleEntity
 }

@@ -1,6 +1,6 @@
 package com.example.data.remote.response
 
-import com.example.domain.entity.schedule.ScheduleResponseEntity
+import com.example.domain.entity.schedule.ScheduleEntity
 import com.google.gson.annotations.SerializedName
 
 data class ScheduleResponse(
@@ -11,7 +11,7 @@ data class ScheduleResponse(
     @SerializedName("금") val friday: String
 )
 
-fun ScheduleResponse.toEntity() = ScheduleResponseEntity(
+fun ScheduleResponse.toEntity() = ScheduleEntity(
     monday = monday,
     tuesday = tuesday,
     wednesday = wednesday,
