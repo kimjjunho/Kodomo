@@ -7,4 +7,6 @@ interface AlarmRepository {
     suspend fun getAlarm(getAlarmParam: GetAlarmParam): GetAlarmEntity
 
     suspend fun deleteAlarm(alarm_id: Long)
+
+   // suspend fun getAutoAlarm(): GetAlarmEntity
 }

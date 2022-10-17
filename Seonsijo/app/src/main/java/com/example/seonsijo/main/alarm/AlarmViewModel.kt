@@ -20,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AlarmViewModel @Inject constructor(
     private val getAlarmUseCase: GetAlarmUseCase,
-    private val deleteAlarmUseCase: DeleteAlarmUseCase
+    private val deleteAlarmUseCase: DeleteAlarmUseCase,
+   // private val getAutoAlarmUseCase: GetAutoAlarmUseCase
 ): BaseViewModel<AlarmViewModel.Event>() {
 
     //AlarmData(-1,"",0,"","")
@@ -46,9 +47,7 @@ class AlarmViewModel @Inject constructor(
 
     fun deleteAlarm(alarm_id: Long, position: Int) = execute(
         job = { deleteAlarmUseCase.execute(alarm_id)},
-        onSuccess = {
-            deleteSuccess.value = position
-                    },
+        onSuccess = { deleteSuccess.value = position },
         onFailure = {
             when(it){
                 is BadRequestException -> emitEvent(Event.BadRequest)
