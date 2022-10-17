@@ -4,6 +4,8 @@ import com.example.data.remote.datasource.RemoteAlarmDataSource
 import com.example.data.remote.datasource.RemoteAlarmDataSourceImpl
 import com.example.data.remote.datasource.RemoteScheduleDataSourceImpl
 import com.example.data.remote.datasource.RemoteScheduleDataSource
+import com.example.data.remote.datasource.RemoteSignUpDataSource
+import com.example.data.remote.datasource.RemoteSignUpDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,4 +24,9 @@ abstract class RemoteDataSourceModule {
     abstract fun bindRemoteAlarmDataModule(
         remoteAlarmDataSourceImpl: RemoteAlarmDataSourceImpl
     ): RemoteAlarmDataSource
+
+    @Binds
+    abstract fun bindRemoteSignUpDataModule(
+        remoteSignUpDataSourceImpl: RemoteSignUpDataSourceImpl
+    ): RemoteSignUpDataSource
 }

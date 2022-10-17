@@ -8,6 +8,7 @@ import dagger.hilt.android.HiltAndroidApp
 
 var gradeNum = 1
 var classNum = 1
+var device_token: String? = null
 var gradeClassCheck = false
 
 @HiltAndroidApp

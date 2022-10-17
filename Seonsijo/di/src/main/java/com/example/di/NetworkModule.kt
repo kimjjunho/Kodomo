@@ -3,6 +3,7 @@ package com.example.di
 import android.util.Log
 import com.example.data.remote.api.AlarmAPI
 import com.example.data.remote.api.ScheduleAPI
+import com.example.data.remote.api.SignUpAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -54,4 +55,11 @@ object NetworkModule {
         retrofit: Retrofit
     ): AlarmAPI =
         retrofit.create(AlarmAPI::class.java)
+
+    @Singleton
+    @Provides
+    fun provideSignUpAPI(
+        retrofit: Retrofit
+    ): SignUpAPI =
+        retrofit.create(SignUpAPI::class.java)
 }

@@ -6,6 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.google.firebase.FirebaseApp
 import dagger.hilt.android.HiltAndroidApp
 
 abstract class BaseActivity<B: ViewDataBinding>(

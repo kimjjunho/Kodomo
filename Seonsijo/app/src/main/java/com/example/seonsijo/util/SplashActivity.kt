@@ -1,6 +1,8 @@
 package com.example.seonsijo.util
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +11,8 @@ import com.example.seonsijo.base.BaseActivity
 import com.example.seonsijo.databinding.ActivitySplashBinding
 import com.example.seonsijo.main.MainActivity
 import com.example.seonsijo.signup.SignUpActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -16,7 +20,6 @@ import kotlinx.coroutines.launch
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash){
 
     override fun initView() {
-
         val anim = AnimationUtils.loadAnimation(this, R.anim.splash_yellow_animation)
 
         var codomo : MutableLiveData<Boolean> = MutableLiveData<Boolean>()
@@ -39,6 +42,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             }
 
             splashButton.setOnClickListener {
+                getDeviceToken()
+
                 if(gradeClassCheck){
                     startActivity(Intent(applicationContext,MainActivity::class.java))
                 }else{
@@ -46,10 +51,19 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                 }
             }
         }
-
-
-
     }
+
+    private fun getDeviceToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if(!task.isSuccessful){
+                return@OnCompleteListener
+            }
+            val token = task.result
+            val returnStr = getString(R.string.msg_token_fmt, token)
+            device_token =  returnStr
+        })
+    }
+
 
     override fun observeEvent() {}
 }

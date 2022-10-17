@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "606305320781",
+    "project_id": "seansijo",
+    "storage_bucket": "seansijo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606305320781:android:4730286d514a6e3de98104",
+        "android_client_info": {
+          "package_name": "com.example.seonsijo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606305320781-oa7l6kqfk6q4p32h2sp7ltbupcgms0im.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.seonsijo",
+            "certificate_hash": "18bd99dd189a885e92e8bb5a64ba0ae8dcbbc71d"
+          }
+        },
+        {
+          "client_id": "606305320781-2k616ui68ljianccoqrmcc9jsbc03j6c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKg3NhINW0Ao61Q73K8W_49Md2JgGt9aU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "606305320781-2k616ui68ljianccoqrmcc9jsbc03j6c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
