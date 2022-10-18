@@ -16,6 +16,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.openjdk.tools.javac.Main
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash){
 
@@ -24,9 +25,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
         var codomo : MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
-        classNum = MyApplication.prefs.getString("classNum","1").toInt()
-        gradeNum = MyApplication.prefs.getString("gradeNum","1").toInt()
-        gradeClassCheck = MyApplication.prefs.getBoolean("check",false)
+        MainActivity.classNum = MyApplication.prefs.getString("classNum","1").toInt()
+        MainActivity.gradeNum = MyApplication.prefs.getString("gradeNum","1").toInt()
+        MainActivity.gradeClassCheck = MyApplication.prefs.getBoolean("check",false)
 
         binding.run {
             GlobalScope.launch {
@@ -44,7 +45,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             splashButton.setOnClickListener {
                 getDeviceToken()
 
-                if(gradeClassCheck){
+                if(MainActivity.gradeClassCheck){
                     startActivity(Intent(applicationContext,MainActivity::class.java))
                 }else{
                     startActivity(Intent(applicationContext, SignUpActivity::class.java))
@@ -60,7 +61,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             }
             val token = task.result
             val returnStr = getString(R.string.msg_token_fmt, token)
-            device_token =  returnStr
+            MainActivity.device_token = returnStr
         })
     }
 

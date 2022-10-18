@@ -7,13 +7,11 @@ import com.example.domain.entity.alarm.GetAlarmParam
 import com.example.seonsijo.R
 import com.example.seonsijo.base.BaseActivity
 import com.example.seonsijo.databinding.ActivityAlarmBinding
+import com.example.seonsijo.main.MainActivity
 import com.example.seonsijo.main.alarm.adapter.AlarmAdapter
 import com.example.seonsijo.main.alarm.adapter.AlarmSwipeHelper
-import com.example.seonsijo.util.classNum
-import com.example.seonsijo.util.gradeNum
 import com.example.seonsijo.util.repeatOnStarted
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm){
@@ -27,7 +25,7 @@ class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm
     }
 
     override fun initView() {
-        alarmViewModel.getAlarm(GetAlarmParam(gradeNum,classNum))
+        alarmViewModel.getAlarm(GetAlarmParam(MainActivity.gradeNum,MainActivity.classNum))
 
         alarmList.add(AlarmData(1,"과학","과학 알림이 새로 왔어요 ㅎㅎ"))
 
@@ -67,6 +65,6 @@ class AlarmActivity : BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm
 
     override fun onResume() {
         super.onResume()
-        alarmViewModel.getAlarm(GetAlarmParam(gradeNum,classNum))
+        alarmViewModel.getAlarm(GetAlarmParam(MainActivity.gradeNum,MainActivity.classNum))
     }
 }

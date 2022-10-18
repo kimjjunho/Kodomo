@@ -15,9 +15,7 @@ import com.example.seonsijo.R
 import com.example.seonsijo.test.TestListActivity
 import com.example.seonsijo.base.BaseActivity
 import com.example.seonsijo.util.repeatOnStarted
-import com.example.seonsijo.util.classNum
 import com.example.seonsijo.databinding.ActivityMainBinding
-import com.example.seonsijo.util.gradeNum
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import dagger.hilt.android.AndroidEntryPoint
 import java.sql.Date
@@ -62,6 +60,13 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                 startActivity(Intent(this@MainActivity, AlarmActivity::class.java))
             }
         }
+    }
+
+    companion object SignUpItem {
+        var gradeNum = 1
+        var classNum = 1
+        var device_token: String? = null
+        var gradeClassCheck = false
     }
 
     private fun tableClickEvent(){

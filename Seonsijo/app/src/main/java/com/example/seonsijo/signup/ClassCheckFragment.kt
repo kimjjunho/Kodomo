@@ -2,8 +2,8 @@ package com.example.seonsijo.signup
 
 import com.example.seonsijo.R
 import com.example.seonsijo.base.BaseFragment
-import com.example.seonsijo.util.classNum
 import com.example.seonsijo.databinding.FragmentClassCheckBinding
+import com.example.seonsijo.main.MainActivity
 
 
 class ClassCheckFragment : BaseFragment<FragmentClassCheckBinding>(R.layout.fragment_class_check){
@@ -22,10 +22,10 @@ class ClassCheckFragment : BaseFragment<FragmentClassCheckBinding>(R.layout.frag
     private fun onRadioButton(){
         binding.radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             when(i){
-                R.id.btn1 -> classNum = 1
-                R.id.btn2 -> classNum = 2
-                R.id.btn3 -> classNum = 3
-                R.id.btn4 -> classNum = 4
+                R.id.btn1 -> MainActivity.classNum = 1
+                R.id.btn2 -> MainActivity.classNum = 2
+                R.id.btn3 -> MainActivity.classNum = 3
+                R.id.btn4 -> MainActivity.classNum = 4
             }
         }
     }
