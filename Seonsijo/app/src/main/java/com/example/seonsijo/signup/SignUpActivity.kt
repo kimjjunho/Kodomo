@@ -38,7 +38,6 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                     tvTitle.text = "반 입력"
                 }
                 else{
-                    startActivity(Intent(this@SignUpActivity,MainActivity::class.java))
                     signUpViewModel.signUp(
                         SignUpEntity(
                             grade = MainActivity.gradeNum.toString().toInt(),
@@ -59,7 +58,6 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                     is SignUpViewModel.Event.Success -> {
                         binding.run {
                             startActivity(Intent(applicationContext, MainActivity::class.java))
-                            finish()
                         }
                     }
                     is SignUpViewModel.Event.BadRequest -> {

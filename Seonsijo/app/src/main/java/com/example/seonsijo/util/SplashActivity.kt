@@ -14,13 +14,12 @@ import com.example.seonsijo.main.MainActivity
 import com.example.seonsijo.signup.SignUpActivity
 import com.example.seonsijo.signup.SignUpViewModel
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.openjdk.tools.javac.Main
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash){
@@ -62,13 +61,16 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     }
 
     private fun getDeviceToken() {
+        FirebaseApp.initializeApp(this)
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if(!task.isSuccessful){
                 return@OnCompleteListener
             }
             val token = task.result
-            val returnStr = getString(R.string.msg_token_fmt, token)
-            MainActivity.device_token = returnStr
+            val msg = getString(R.string.msg_token_fmt, token)
+            Log.d("TAG", "getDeviceToken: $token")
+            Log.d("TAG", "getDeviceToken: $msg")
+            MainActivity.device_token = token
         })
     }
 

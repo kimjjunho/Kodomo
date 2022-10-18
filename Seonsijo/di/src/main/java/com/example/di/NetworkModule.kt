@@ -19,7 +19,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "http://192.168.12.78:8080/"
+    private const val BASE_URL = "http://192.168.29.78:8080/"
 
     @Provides
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =

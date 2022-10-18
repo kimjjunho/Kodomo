@@ -52,8 +52,8 @@ dependencies {
 
     //fcm
     implementation 'com.google.firebase:firebase-messaging:23.0.2'
-    implementation platform('com.google.firebase:firebase-bom:31.0.0')
-    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-bom:31.0.0'
+    implementation 'com.google.firebase:firebase-core:20.1.0'
 
     //슬라이딩 레이아웃
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
