@@ -2,6 +2,8 @@ package com.example.di
 
 import com.example.data.local.datasource.LocalScheduleDataSource
 import com.example.data.local.datasource.LocalScheduleDataSourceImpl
+import com.example.data.local.datasource.LocalSignInDataSource
+import com.example.data.local.datasource.LocalSignInDataSourceImpl
 import com.example.data.repository.AlarmRepositoryImpl
 import dagger.Binds
 import dagger.Module
@@ -16,5 +18,10 @@ abstract class LocalDataSourceModule {
     abstract fun bindLocalScheduleDataSource(
         localScheduleDataSourceImpl: LocalScheduleDataSourceImpl
     ):LocalScheduleDataSource
+
+    @Binds
+    abstract fun bindLocalSignInDataSource(
+        localSignInDataSourceImpl: LocalSignInDataSourceImpl
+    ): LocalSignInDataSource
 
 }

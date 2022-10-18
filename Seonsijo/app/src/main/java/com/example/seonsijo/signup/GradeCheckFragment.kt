@@ -9,6 +9,8 @@ class GradeCheckFragment : BaseFragment<FragmentGradeCheckBinding>(R.layout.frag
 
     override fun initView() {
 
+        MainActivity.gradeNum = 1
+
         binding.run {
             btn1.isChecked = true
         }

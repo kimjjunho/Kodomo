@@ -63,7 +63,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                         }
                     }
                     is SignUpViewModel.Event.BadRequest -> {
-                        showToastShort("디바이스 토큰을 불러올 수 없습니다")
+                        showToastShort("디바이스 토큰을 불러올 수 없습니다. 앱을 다시 실행해주세요")
                     }
                     is SignUpViewModel.Event.NotFound -> {
                         showToastShort("학년, 반을 찾을 수 없습니다")

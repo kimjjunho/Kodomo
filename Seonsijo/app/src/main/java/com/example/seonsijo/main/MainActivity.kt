@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.entity.schedule.ScheduleParam
+import com.example.domain.entity.signup.SignUpEntity
 import com.example.seonsijo.main.alarm.AlarmActivity
 import com.example.seonsijo.util.MyApplication
 import com.example.seonsijo.R
@@ -16,6 +17,7 @@ import com.example.seonsijo.test.TestListActivity
 import com.example.seonsijo.base.BaseActivity
 import com.example.seonsijo.util.repeatOnStarted
 import com.example.seonsijo.databinding.ActivityMainBinding
+import com.example.seonsijo.signup.SignUpViewModel
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import dagger.hilt.android.AndroidEntryPoint
 import java.sql.Date
@@ -27,6 +29,7 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
     (R.layout.activity_main) {
 
     private val mainViewModel: MainViewModel by viewModels()
+    private val signUpViewModel: SignUpViewModel by viewModels()
 
     private val date: String = SimpleDateFormat("yyyyMMdd").format(Date(System.currentTimeMillis()))
 
@@ -43,14 +46,9 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
         mainViewModel.autoSchedule()
 
         binding.run {
-
-            MyApplication.prefs.setBoolean("check",true)
-
             tvGrade.text = gradeNum.toString() + "학년"
-            tvClass.text = classNum.toString() + "반"
 
-            MyApplication.prefs.setString("classNum", classNum.toString())
-            MyApplication.prefs.setString("gradeNum", gradeNum.toString())
+            tvClass.text = classNum.toString() + "반"
 
             btnBeforeWeek.setOnClickListener {}
 
@@ -62,11 +60,10 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
         }
     }
 
-    companion object SignUpItem {
-        var gradeNum = 1
-        var classNum = 1
+    companion object SignUpVariable {
+        var gradeNum = 0
+        var classNum = 0
         var device_token: String? = null
-        var gradeClassCheck = false
     }
 
     private fun tableClickEvent(){
@@ -123,8 +120,6 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                classNum = binding.tvClass.text.toString()[0].toString().toInt()
-                MyApplication.prefs.setString("classNum", classNum.toString())
 
                 mainViewModel.getSchedule(
                     ScheduleParam(
@@ -133,6 +128,15 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                         date = date
                     )
                 )
+
+                signUpViewModel.updateSignUpVariable(
+                    SignUpEntity(
+                        grade = gradeNum,
+                        class_num = classNum,
+                        device_token = device_token
+                    )
+                )
+
             }
 
             override fun afterTextChanged(p0: Editable?) {}
@@ -145,13 +149,20 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 gradeNum = binding.tvGrade.text.toString()[0].toString().toInt()
-                MyApplication.prefs.setString("gradeNum", gradeNum.toString())
 
                 mainViewModel.getSchedule(
                     ScheduleParam(
                         grade = gradeNum,
                         class_num = classNum,
                         date = date
+                    )
+                )
+
+                signUpViewModel.updateSignUpVariable(
+                    SignUpEntity(
+                        grade = gradeNum,
+                        class_num = classNum,
+                        device_token = device_token
                     )
                 )
             }

@@ -1,4 +1,4 @@
-package com.example.data
+package com.example.data.util
 
 import com.example.domain.NeedLoginException
 import com.example.domain.exception.BadRequestException

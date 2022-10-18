@@ -434,7 +434,6 @@
                         <Button
                             android:id="@+id/btn_friday1"
                             style="@style/main_btn" />
-                        android:text="수학" />
 
                     </TableRow>
 

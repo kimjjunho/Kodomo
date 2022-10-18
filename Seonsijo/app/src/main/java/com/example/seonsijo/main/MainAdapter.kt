@@ -52,8 +52,10 @@ class MainAdapter(
 
             itemAll.setOnClickListener {
                 if(isGrade){
+                    MainActivity.gradeNum = tvItem.text.toString()[0].toString().toInt()
                     tvGrade.text = tvItem.text
                 }else{
+                    MainActivity.classNum = tvItem.text.toString()[0].toString().toInt()
                     tvClass.text = tvItem.text
                 }
             }

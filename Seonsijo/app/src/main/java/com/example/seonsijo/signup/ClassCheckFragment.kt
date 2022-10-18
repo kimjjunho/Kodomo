@@ -9,6 +9,7 @@ import com.example.seonsijo.main.MainActivity
 class ClassCheckFragment : BaseFragment<FragmentClassCheckBinding>(R.layout.fragment_class_check){
 
     override fun initView() {
+        MainActivity.classNum = 1
 
         binding.run {
             btn1.isChecked = true

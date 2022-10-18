@@ -5,29 +5,33 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
+import androidx.activity.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.seonsijo.R
 import com.example.seonsijo.base.BaseActivity
 import com.example.seonsijo.databinding.ActivitySplashBinding
 import com.example.seonsijo.main.MainActivity
 import com.example.seonsijo.signup.SignUpActivity
+import com.example.seonsijo.signup.SignUpViewModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.openjdk.tools.javac.Main
 
+@AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash){
 
+    private val signUpViewModel: SignUpViewModel by viewModels()
+
     override fun initView() {
+        signUpViewModel.signIn()
+
         val anim = AnimationUtils.loadAnimation(this, R.anim.splash_yellow_animation)
-
         var codomo : MutableLiveData<Boolean> = MutableLiveData<Boolean>()
-
-        MainActivity.classNum = MyApplication.prefs.getString("classNum","1").toInt()
-        MainActivity.gradeNum = MyApplication.prefs.getString("gradeNum","1").toInt()
-        MainActivity.gradeClassCheck = MyApplication.prefs.getBoolean("check",false)
 
         binding.run {
             GlobalScope.launch {
@@ -45,7 +49,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             splashButton.setOnClickListener {
                 getDeviceToken()
 
-                if(MainActivity.gradeClassCheck){
+                Log.d("TAG", "initView: "+ MainActivity.gradeNum)
+                Log.d("TAG", "initView: "+ MainActivity.classNum)
+
+                if(MainActivity.gradeNum != 0 && MainActivity.classNum != 0 && !MainActivity.device_token.isNullOrEmpty()){
                     startActivity(Intent(applicationContext,MainActivity::class.java))
                 }else{
                     startActivity(Intent(applicationContext, SignUpActivity::class.java))
@@ -66,5 +73,13 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     }
 
 
-    override fun observeEvent() {}
+    override fun observeEvent() {
+        repeatOnStarted {
+            signUpViewModel.signIn.collect{
+                MainActivity.gradeNum = it.grade
+                MainActivity.classNum = it.class_num
+                MainActivity.device_token = it.device_token
+            }
+        }
+    }
 }
