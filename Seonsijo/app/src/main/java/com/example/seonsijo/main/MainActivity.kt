@@ -34,7 +34,6 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
     private val date: String = SimpleDateFormat("yyyyMMdd").format(Date(System.currentTimeMillis()))
 
     override fun initView() {
-
         classTextChange()
 
         gradeTextChange()
@@ -68,50 +67,45 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
 
     private fun tableClickEvent(){
         binding.run {
-            gotoT(btnMonday1, monday1)
-            gotoT(btnMonday2, monday2)
-            gotoT(btnMonday3, monday3)
-            gotoT(btnMonday4, monday4)
-            gotoT(btnMonday5, monday5)
-            gotoT(btnMonday6, monday6)
-            gotoT(btnMonday7, monday7)
+            monday1.gotoT()
+            monday2.gotoT()
+            monday3.gotoT()
+            monday4.gotoT()
+            monday5.gotoT()
+            monday6.gotoT()
+            monday7.gotoT()
 
+            tuesday1.gotoT()
+            tuesday2.gotoT()
+            tuesday3.gotoT()
+            tuesday4.gotoT()
+            tuesday5.gotoT()
+            tuesday6.gotoT()
+            tuesday7.gotoT()
 
-            gotoT(btnTuesday1, tuesday1)
-            gotoT(btnTuesday2, tuesday2)
-            gotoT(btnTuesday3, tuesday3)
-            gotoT(btnTuesday4, tuesday4)
-            gotoT(btnTuesday5, tuesday5)
-            gotoT(btnTuesday6, tuesday6)
-            gotoT(btnTuesday7, tuesday7)
+            wednesday1.gotoT()
+            wednesday2.gotoT()
+            wednesday3.gotoT()
+            wednesday4.gotoT()
+            wednesday5.gotoT()
+            wednesday6.gotoT()
+            wednesday7.gotoT()
 
+            thursday1.gotoT()
+            thursday2.gotoT()
+            thursday3.gotoT()
+            thursday4.gotoT()
+            thursday5.gotoT()
+            thursday6.gotoT()
+            thursday7.gotoT()
 
-            gotoT(btnWednesday1, wednesday1)
-            gotoT(btnWednesday2, wednesday2)
-            gotoT(btnWednesday3, wednesday3)
-            gotoT(btnWednesday4, wednesday4)
-            gotoT(btnWednesday5, wednesday5)
-            gotoT(btnWednesday6, wednesday6)
-            gotoT(btnWednesday7, wednesday7)
-
-
-            gotoT(btnThursday1, thursday1)
-            gotoT(btnThursday2, thursday2)
-            gotoT(btnThursday3, thursday3)
-            gotoT(btnThursday4, thursday4)
-            gotoT(btnThursday5, thursday5)
-            gotoT(btnThursday6, thursday6)
-            gotoT(btnThursday7, thursday7)
-
-
-            gotoT(btnFriday1, friday1)
-            gotoT(btnFriday2, friday2)
-            gotoT(btnFriday3, friday3)
-            gotoT(btnFriday4, friday4)
-            gotoT(btnFriday5, friday5)
-            gotoT(btnFriday6, friday6)
-            gotoT(btnFriday7, friday7)
-
+            friday1.gotoT()
+            friday2.gotoT()
+            friday3.gotoT()
+            friday4.gotoT()
+            friday5.gotoT()
+            friday6.gotoT()
+            friday7.gotoT()
         }
     }
 
@@ -171,10 +165,10 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
         })
     }
 
-    private fun gotoT(button: Button, textView: TextView){
-        button.setOnClickListener {
-            if(textView.text != ""){
-                gotoTestListActivity(textView)
+    private fun TextView.gotoT() {
+        setOnClickListener {
+            if(!this.text.isNullOrEmpty()) {
+                gotoTestListActivity(this)
             }
         }
     }
