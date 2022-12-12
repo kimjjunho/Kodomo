@@ -24,7 +24,13 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import dagger.hilt.android.AndroidEntryPoint
 import java.sql.Date
 import java.text.SimpleDateFormat
+import java.time.DayOfWeek
+import java.time.Year
+import java.util.Calendar
+import java.util.GregorianCalendar
 import javax.inject.Inject
+import kotlin.math.abs
+import kotlin.math.min
 
 @AndroidEntryPoint
 class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
@@ -33,6 +39,15 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
     private var toastMsg = ""
     private val mainViewModel: MainViewModel by viewModels()
     private val signUpViewModel: SignUpViewModel by viewModels()
+
+    private var startAt = ""
+    private var endAt = ""
+    private var year = 0
+    private var month = 0
+    private var day = 0
+    private var checkDay = 0
+
+    private val calendar = GregorianCalendar()
 
     @SuppressLint("SimpleDateFormat")
     private val date: String = SimpleDateFormat("yyyyMMdd").format(Date(System.currentTimeMillis()))
@@ -47,23 +62,102 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
 
         // tableClickEvent()
 
-        mainViewModel.getSchedule(
-            ScheduleParam(
-                grade = 1,
-                class_num = 1,
-                startAt = "2022-12-12",
-                endAt = "2022-12-16",
-            )
-        )
+        year = calendar.get(Calendar.YEAR)
+        month = (calendar.get(Calendar.MONTH)+1)
+        day = calendar.get(Calendar.DATE)
+
+        Log.d("TAG", "initView: "+year)
+        Log.d("TAG", "initView: "+month)
+        Log.d("TAG", "initView: "+day)
+
+
+        when (calendar.get(Calendar.DAY_OF_WEEK)) {
+            1 -> {
+                startAt = startMapper(0)
+                endAt = endMapper(5)
+            }
+            2 -> {
+                startAt = startMapper(0)
+                endAt = endMapper(4)
+            }
+            3 -> {
+                startAt = startMapper(1)
+                endAt = endMapper(3)
+            }
+            4 -> {
+                startAt = startMapper(2)
+                endAt = endMapper(2)
+            }
+            5 -> {
+                startAt = startMapper(3)
+                endAt = endMapper(1)
+            }
+            6 -> {
+                startAt = startMapper(4)
+                endAt = endMapper(0)
+            }
+            7 -> {
+                startAt = startMapper(0)
+                endAt = endMapper(6)
+            }
+        }
 
         binding.run {
+
             tvGrade.text = gradeNum.toString() + "학년"
 
             tvClass.text = classNum.toString() + "반"
 
-            btnBeforeWeek.setOnClickListener {}
+            btnBeforeWeek.setOnClickListener {
+                checkDay --
 
-            btnAfterWeek.setOnClickListener {}
+                if (checkDay == 0) {
+                    tvScheduleWeek.text = "이번주 시간표"
+                } else {
+                    if (checkDay < 0) {
+                        tvScheduleWeek.text = abs(checkDay).toString() + "주 전 시간표"
+                    } else {
+                        tvScheduleWeek.text = checkDay.toString() + "주 후 시간표"
+                    }
+                }
+
+                startAt = startMapper(0)
+                endAt = endMapper(0)
+
+                mainViewModel.getSchedule(
+                    ScheduleParam(
+                        grade = gradeNum,
+                        class_num = classNum,
+                        startAt = startAt,
+                        endAt = endAt,
+                    )
+                )
+            }
+
+            btnAfterWeek.setOnClickListener {
+                checkDay ++
+                if (checkDay == 0) {
+                    tvScheduleWeek.text = "이번주 시간표"
+                } else {
+                    if (checkDay < 0) {
+                        tvScheduleWeek.text = abs(checkDay).toString() + "주 전 시간표"
+                    } else {
+                        tvScheduleWeek.text = checkDay.toString() + "주 후 시간표"
+                    }
+                }
+
+                startAt = startMapper(0)
+                endAt = endMapper(0)
+
+                mainViewModel.getSchedule(
+                    ScheduleParam(
+                        grade = gradeNum,
+                        class_num = classNum,
+                        startAt = startAt,
+                        endAt = endAt,
+                    )
+                )
+            }
 
             btnAlarm.setOnClickListener {
                 startActivity(Intent(this@MainActivity, AlarmActivity::class.java))
@@ -75,6 +169,38 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
         var gradeNum = 1
         var classNum = 1
         var device_token: String? = null
+    }
+
+    private fun dateMapper(year: Int, month: Int, day: Int): String =
+        year.toString() + "-" + String.format("%02d", month) + "-" + String.format("%02d", day)
+
+    private fun startMapper(minusDay: Int): String {
+        val calendar = GregorianCalendar(
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DATE) + 7 * checkDay - minusDay
+        )
+
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH) + 1
+        val day = calendar.get(Calendar.DATE)
+
+        return dateMapper(year, month, day)
+    }
+
+
+    private fun endMapper(plusDay: Int): String {
+        val calendar = GregorianCalendar(
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DATE) + 7 * checkDay + plusDay
+        )
+
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH) + 1
+        val day = calendar.get(Calendar.DATE)
+
+        return dateMapper(year, month, day)
     }
 
     private fun tableClickEvent(){
@@ -170,6 +296,15 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                         grade = gradeNum,
                         class_num = classNum,
                         device_token = device_token
+                    )
+                )
+
+                mainViewModel.getSchedule(
+                    ScheduleParam(
+                        grade = gradeNum,
+                        class_num = classNum,
+                        startAt = startAt,
+                        endAt = endAt,
                     )
                 )
             }

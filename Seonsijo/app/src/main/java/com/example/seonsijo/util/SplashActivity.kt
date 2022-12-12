@@ -31,7 +31,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         signUpViewModel.signIn()
 
         val anim = AnimationUtils.loadAnimation(this, R.anim.splash_yellow_animation)
-        var codomo : MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+        val codomo : MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
         binding.run {
             GlobalScope.launch {
