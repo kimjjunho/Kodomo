@@ -4,17 +4,37 @@ import com.example.domain.entity.schedule.ScheduleEntity
 import com.google.gson.annotations.SerializedName
 
 data class ScheduleResponse(
-    @SerializedName("월") val monday: String,
-    @SerializedName("화") val tuesday: String,
-    @SerializedName("수") val wednesday: String,
-    @SerializedName("목") val thursday: String,
-    @SerializedName("금") val friday: String
-)
+    @SerializedName("0") val mondayList: List<Schedule>,
+    @SerializedName("1") val tuesdayList: List<Schedule>,
+    @SerializedName("2") val wednesdayList: List<Schedule>,
+    @SerializedName("3") val thursdayList: List<Schedule>,
+    @SerializedName("4") val fridayList: List<Schedule>,
+) {
+    data class Schedule(
+        @SerializedName("schedule_id") val schedule_id: String,
+        @SerializedName("grade") val grade: String,
+        @SerializedName("room") val room: String,
+        @SerializedName("subject") val subject: String,
+        @SerializedName("sequence") val sequence: String,
+        @SerializedName("day") val day: String,
+        @SerializedName("week_of_day") val week_of_day: String,
+    )
+}
 
 fun ScheduleResponse.toEntity() = ScheduleEntity(
-    monday = monday,
-    tuesday = tuesday,
-    wednesday = wednesday,
-    thursday = thursday,
-    friday = friday
+    mondayList = mondayList.map { it.toEntity() },
+    tuesdayList = tuesdayList.map { it.toEntity() },
+    wednesdayList = wednesdayList.map { it.toEntity() },
+    thursdayList = thursdayList.map { it.toEntity() },
+    fridayList = fridayList.map { it.toEntity() },
+)
+
+fun ScheduleResponse.Schedule.toEntity() = ScheduleEntity.Schedule(
+    schedule_id = schedule_id,
+    grade = grade,
+    room = room,
+    subject = subject,
+    sequence = sequence,
+    day = day,
+    week_of_day = week_of_day,
 )

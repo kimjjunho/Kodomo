@@ -72,7 +72,14 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         })
     }
 
-    override fun observeEvent() {}
+    override fun observeEvent() {
+        repeatOnStarted {
+            signUpViewModel.signIn.collect{
+                MainActivity.gradeNum = it.grade
+                MainActivity.classNum = it.class_num
+            }
+        }
+    }
 
 //    override fun observeEvent() {
 //        repeatOnStarted {

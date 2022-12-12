@@ -10,13 +10,13 @@ class SignInPreferenceImpl @Inject constructor(
         s.saveIntPreference(GRADE_NUM,gradeNum)
 
     override suspend fun fetchGradeNum(): Int =
-        s.fetchIntPreference(GRADE_NUM,0)
+        s.fetchIntPreference(GRADE_NUM,1)
 
     override suspend fun saveClassNum(classNum: Int) =
         s.saveIntPreference(CLASS_NUM,classNum)
 
     override suspend fun fetchClassNum(): Int =
-        s.fetchIntPreference(CLASS_NUM,0)
+        s.fetchIntPreference(CLASS_NUM,1)
 
     override suspend fun saveDeviceToken(device_token: String?) =
         s.saveStringPreference(DEVICE_TOKEN,device_token!!)

@@ -1,14 +1,16 @@
 package com.example.data.remote.api
 
-import com.example.data.remote.request.ScheduleRequest
 import com.example.data.remote.response.ScheduleResponse
-import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ScheduleAPI {
 
-    @GET("users/schedule")
+    @GET("/schedules")
     suspend fun getSchedule(
-        @Body scheduleRequestRequest: ScheduleRequest
+        @Query("grade") grade: String,
+        @Query("room") room: String,
+        @Query("startAt") startAt: String,
+        @Query("endAt") endAt: String,
     ): ScheduleResponse
 }

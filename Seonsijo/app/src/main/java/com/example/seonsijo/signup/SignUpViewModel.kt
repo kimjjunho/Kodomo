@@ -21,7 +21,7 @@ class SignUpViewModel @Inject constructor(
     private val signInUseCase: SignInUseCase
 ) : BaseViewModel<SignUpViewModel.Event>() {
 
-    private val _signIn = MutableStateFlow(SignInParam(0, 0, null))
+    private val _signIn = MutableStateFlow(SignInParam(1, 1, null))
     val signIn: StateFlow<SignInParam> = _signIn
 
     fun signUp(signUpEntity: SignUpEntity) = execute(

@@ -11,21 +11,17 @@ class LocalScheduleDataSourceImpl @Inject constructor(
     override suspend fun fetchSchedule(): ScheduleEntity =
         with(schedulePreference){
             ScheduleEntity(
-                monday = fetchMonday(),
-                tuesday = fetchTuesday(),
-                wednesday = fetchWednesday(),
-                thursday = fetchThursday(),
-                friday = fetchFriday()
+                mondayList = listOf(),
+                tuesdayList = listOf(),
+                wednesdayList = listOf(),
+                thursdayList = listOf(),
+                fridayList = listOf(),
             )
         }
 
     override suspend fun saveSchedule(scheduleEntity: ScheduleEntity) {
         with(schedulePreference){
-            saveMonday(scheduleEntity.monday)
-            saveTuesday(scheduleEntity.tuesday)
-            saveWednesday(scheduleEntity.wednesday)
-            saveThursday(scheduleEntity.thursday)
-            saveFriday(scheduleEntity.friday)
+
         }
     }
 
