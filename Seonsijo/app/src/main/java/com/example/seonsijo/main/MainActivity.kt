@@ -29,6 +29,7 @@ import java.time.Year
 import java.util.Calendar
 import java.util.GregorianCalendar
 import javax.inject.Inject
+import javax.security.auth.Subject
 import kotlin.math.abs
 import kotlin.math.min
 
@@ -36,15 +37,17 @@ import kotlin.math.min
 class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
     (R.layout.activity_main) {
 
-    private var toastMsg = ""
     private val mainViewModel: MainViewModel by viewModels()
     private val signUpViewModel: SignUpViewModel by viewModels()
 
     private var startAt = ""
     private var endAt = ""
-    private var year = 0
-    private var month = 0
-    private var day = 0
+    private var startYear = 0
+    private var startMonth = 0
+    private var startDay = 0
+    private var endYear = 0
+    private var endMonth = 0
+    private var endDay = 0
     private var checkDay = 0
 
     private val calendar = GregorianCalendar()
@@ -61,46 +64,62 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
         useRecyclerView()
 
         // tableClickEvent()
-
-        year = calendar.get(Calendar.YEAR)
-        month = (calendar.get(Calendar.MONTH)+1)
-        day = calendar.get(Calendar.DATE)
-
-        Log.d("TAG", "initView: "+year)
-        Log.d("TAG", "initView: "+month)
-        Log.d("TAG", "initView: "+day)
-
+        var startCalendarCheckDay = 0
+        var endCalendarCheckDay = 0
 
         when (calendar.get(Calendar.DAY_OF_WEEK)) {
             1 -> {
-                startAt = startMapper(0)
-                endAt = endMapper(5)
+                startCalendarCheckDay = 1
+                endCalendarCheckDay = 5
             }
             2 -> {
-                startAt = startMapper(0)
-                endAt = endMapper(4)
+                startCalendarCheckDay = 0
+                endCalendarCheckDay = 4
             }
             3 -> {
-                startAt = startMapper(1)
-                endAt = endMapper(3)
+                startCalendarCheckDay = -1
+                endCalendarCheckDay = 3
             }
             4 -> {
-                startAt = startMapper(2)
-                endAt = endMapper(2)
+                startCalendarCheckDay = -2
+                endCalendarCheckDay = 2
             }
             5 -> {
-                startAt = startMapper(3)
-                endAt = endMapper(1)
+                startCalendarCheckDay = -3
+                endCalendarCheckDay = 1
             }
             6 -> {
-                startAt = startMapper(4)
-                endAt = endMapper(0)
+                startCalendarCheckDay = -4
+                endCalendarCheckDay = 0
             }
             7 -> {
-                startAt = startMapper(0)
-                endAt = endMapper(6)
+                startCalendarCheckDay = 2
+                endCalendarCheckDay = 6
             }
         }
+
+        val startCalendar = GregorianCalendar(
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DATE) + startCalendarCheckDay
+        )
+
+        val endCalendar = GregorianCalendar(
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DATE) + endCalendarCheckDay
+        )
+
+        startYear = startCalendar.get(Calendar.YEAR)
+        startMonth = startCalendar.get(Calendar.MONTH)
+        startDay = startCalendar.get(Calendar.DATE)
+
+        endYear = endCalendar.get(Calendar.YEAR)
+        endMonth = endCalendar.get(Calendar.MONTH)
+        endDay = endCalendar.get(Calendar.DATE)
+
+        endAt = endMapper()
+        startAt = startMapper()
 
         binding.run {
 
@@ -121,8 +140,8 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                     }
                 }
 
-                startAt = startMapper(0)
-                endAt = endMapper(0)
+                startAt = startMapper()
+                endAt = endMapper()
 
                 mainViewModel.getSchedule(
                     ScheduleParam(
@@ -146,8 +165,8 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                     }
                 }
 
-                startAt = startMapper(0)
-                endAt = endMapper(0)
+                startAt = startMapper()
+                endAt = endMapper()
 
                 mainViewModel.getSchedule(
                     ScheduleParam(
@@ -174,12 +193,8 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
     private fun dateMapper(year: Int, month: Int, day: Int): String =
         year.toString() + "-" + String.format("%02d", month) + "-" + String.format("%02d", day)
 
-    private fun startMapper(minusDay: Int): String {
-        val calendar = GregorianCalendar(
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DATE) + 7 * checkDay - minusDay
-        )
+    private fun startMapper(): String {
+        val calendar = GregorianCalendar(startYear, startMonth, startDay + 7 * checkDay)
 
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH) + 1
@@ -189,12 +204,8 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
     }
 
 
-    private fun endMapper(plusDay: Int): String {
-        val calendar = GregorianCalendar(
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DATE) + 7 * checkDay + plusDay
-        )
+    private fun endMapper(): String {
+        val calendar = GregorianCalendar(endYear, endMonth, endDay + 7 * checkDay)
 
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH) + 1
@@ -355,93 +366,94 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
     private fun fetchMonday(mondayList: List<ScheduleEntity.Schedule>) {
         binding.run {
             try {
-                monday1.text = mondayList[0].subject
-                monday2.text = mondayList[1].subject
-                monday3.text = mondayList[2].subject
-                monday4.text = mondayList[3].subject
-                monday5.text = mondayList[4].subject
-                monday6.text = mondayList[5].subject
-                monday7.text = mondayList[6].subject
-            } catch (e: java.lang.Exception) {
-                toastMsg += "월, "
-            }
-
+                monday1.text = subjectPatch(mondayList[0].subject)
+                monday2.text = subjectPatch(mondayList[1].subject)
+                monday3.text = subjectPatch(mondayList[2].subject)
+                monday4.text = subjectPatch(mondayList[3].subject)
+                monday5.text = subjectPatch(mondayList[4].subject)
+                monday6.text = subjectPatch(mondayList[5].subject)
+                monday7.text = subjectPatch(mondayList[6].subject)
+            } catch (e: java.lang.Exception) { }
         }
     }
 
     private fun fetchTuesday(tuesdayList: List<ScheduleEntity.Schedule>) {
         binding.run {
+
             try {
-                tuesday1.text = tuesdayList[0].subject
-                tuesday2.text = tuesdayList[1].subject
-                tuesday3.text = tuesdayList[2].subject
-                tuesday4.text = tuesdayList[3].subject
-                tuesday5.text = tuesdayList[4].subject
-                tuesday6.text = tuesdayList[5].subject
-                tuesday7.text = tuesdayList[6].subject
-            } catch (e: java.lang.Exception) {
-                toastMsg += "화, "
-            }
+                tuesday1.text = subjectPatch(tuesdayList[0].subject)
+                tuesday2.text = subjectPatch(tuesdayList[1].subject)
+                tuesday3.text = subjectPatch(tuesdayList[2].subject)
+                tuesday4.text = subjectPatch(tuesdayList[3].subject)
+                tuesday5.text = subjectPatch(tuesdayList[4].subject)
+                tuesday6.text = subjectPatch(tuesdayList[5].subject)
+                tuesday7.text = subjectPatch(tuesdayList[6].subject)
+            } catch (e: java.lang.Exception) { }
         }
     }
 
     private fun fetchWednesday(wednesdayList: List<ScheduleEntity.Schedule>) {
         binding.run {
             try {
-                wednesday1.text = wednesdayList[0].subject
-                wednesday2.text = wednesdayList[1].subject
-                wednesday3.text = wednesdayList[2].subject
-                wednesday4.text = wednesdayList[3].subject
-                wednesday5.text = wednesdayList[4].subject
-                wednesday6.text = wednesdayList[5].subject
-                wednesday7.text = wednesdayList[6].subject
-            } catch (e: java.lang.Exception) {
-                toastMsg += "수, "
-            }
+                wednesday1.text = subjectPatch(wednesdayList[0].subject)
+                wednesday2.text = subjectPatch(wednesdayList[1].subject)
+                wednesday3.text = subjectPatch(wednesdayList[2].subject)
+                wednesday4.text = subjectPatch(wednesdayList[3].subject)
+                wednesday5.text = subjectPatch(wednesdayList[4].subject)
+                wednesday6.text = subjectPatch(wednesdayList[5].subject)
+                wednesday7.text = subjectPatch(wednesdayList[6].subject)
+            } catch (e: java.lang.Exception) { }
         }
     }
 
     private fun fetchThursday(thursdayList: List<ScheduleEntity.Schedule>) {
         binding.run {
             try {
-                thursday1.text = thursdayList[0].subject
-                thursday2.text = thursdayList[1].subject
-                thursday3.text = thursdayList[2].subject
-                thursday4.text = thursdayList[3].subject
-                thursday5.text = thursdayList[4].subject
-                thursday6.text = thursdayList[5].subject
-                thursday7.text = thursdayList[6].subject
-            } catch (e: java.lang.Exception) {
-                toastMsg += "목, "
-            }
+                thursday1.text = subjectPatch(thursdayList[0].subject)
+                thursday2.text = subjectPatch(thursdayList[1].subject)
+                thursday3.text = subjectPatch(thursdayList[2].subject)
+                thursday4.text = subjectPatch(thursdayList[3].subject)
+                thursday5.text = subjectPatch(thursdayList[4].subject)
+                thursday6.text = subjectPatch(thursdayList[5].subject)
+                thursday7.text = subjectPatch(thursdayList[6].subject)
+            } catch (e: java.lang.Exception) { }
         }
     }
 
     private fun fetchFriday(fridayList: List<ScheduleEntity.Schedule>) {
         binding.run {
             try {
-                friday1.text = fridayList[0].subject
-                friday2.text = fridayList[1].subject
-                friday3.text = fridayList[2].subject
-                friday4.text = fridayList[3].subject
-                friday5.text = fridayList[4].subject
-                friday6.text = fridayList[5].subject
-                friday7.text = fridayList[6].subject
-            } catch (e: java.lang.Exception) {
-                toastMsg += "금"
-            }
+                friday1.text = subjectPatch(fridayList[0].subject)
+                friday2.text = subjectPatch(fridayList[1].subject)
+                friday3.text = subjectPatch(fridayList[2].subject)
+                friday4.text = subjectPatch(fridayList[3].subject)
+                friday5.text = subjectPatch(fridayList[4].subject)
+                friday6.text = subjectPatch(fridayList[5].subject)
+                friday7.text = subjectPatch(fridayList[6].subject)
+            } catch (e: java.lang.Exception) { }
         }
     }
 
+    private fun subjectPatch(subject: String): String {
+        return if(subject.length > 5) {
+            when (subject) {
+                "컴퓨터 네트워크" ->  "컴네"
+                "성공적인 직업생활" -> "성직"
+                "프로젝트실무1" -> "프실"
+                "* 빅테이터 분석 결과 시각" -> "빅분"
+                else -> subject
+            }
+        } else subject
+    }
+
     override fun observeEvent() {
-        mainViewModel.schedule.observe(this) {
-            fetchMonday(it.mondayList)
-            fetchTuesday(it.tuesdayList)
-            fetchWednesday(it.wednesdayList)
-            fetchThursday(it.thursdayList)
-            fetchFriday(it.fridayList)
-            if (toastMsg.isNotEmpty()) {
-                showToastShort(toastMsg + "요일에 비는 시간표가 있습니다")
+        repeatOnStarted {
+            mainViewModel.schedule.collect {
+                fetchMonday(it.mondayList)
+                fetchTuesday(it.tuesdayList)
+                fetchWednesday(it.wednesdayList)
+                fetchThursday(it.thursdayList)
+                fetchFriday(it.fridayList)
             }
         }
         repeatOnStarted {
@@ -462,6 +474,45 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                     is MainViewModel.Event.Server -> {
                         showToastShort("서버가 닫혀 있습니다")
                         mainViewModel.autoSchedule()
+                    }
+                    is MainViewModel.Event.Empty -> {
+                        binding.run {
+                            monday1.text = ""
+                            monday2.text = ""
+                            monday3.text = ""
+                            monday4.text = ""
+                            monday5.text = ""
+                            monday6.text = ""
+                            monday7.text = ""
+                            tuesday1.text = ""
+                            tuesday2.text = ""
+                            tuesday3.text = ""
+                            tuesday4.text = ""
+                            tuesday5.text = ""
+                            tuesday6.text = ""
+                            tuesday7.text = ""
+                            wednesday1.text = ""
+                            wednesday2.text = ""
+                            wednesday3.text = ""
+                            wednesday4.text = ""
+                            wednesday5.text = ""
+                            wednesday6.text = ""
+                            wednesday7.text = ""
+                            thursday1.text = ""
+                            thursday2.text = ""
+                            thursday3.text = ""
+                            thursday4.text = ""
+                            thursday5.text = ""
+                            thursday6.text = ""
+                            thursday7.text = ""
+                            friday1.text = ""
+                            friday2.text = ""
+                            friday3.text = ""
+                            friday4.text = ""
+                            friday5.text = ""
+                            friday6.text = ""
+                            friday7.text = ""
+                        }
                     }
                     else -> {
                         showToastShort("알 수 없는 오류")
