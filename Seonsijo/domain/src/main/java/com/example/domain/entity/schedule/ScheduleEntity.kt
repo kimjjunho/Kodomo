@@ -8,7 +8,6 @@ data class ScheduleEntity(
     val fridayList: List<Schedule>
 ) {
     data class Schedule(
-        val schedule_id: String,
         val grade: String,
         val room: String,
         val subject: String,
