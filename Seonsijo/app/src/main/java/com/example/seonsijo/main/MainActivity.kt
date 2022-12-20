@@ -376,13 +376,13 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
     private fun fetchMonday(mondayList: List<ScheduleEntity.Schedule>) {
         binding.run {
             try {
-                monday1.text = subjectPatch(mondayList[0].subject)
-                monday2.text = subjectPatch(mondayList[1].subject)
-                monday3.text = subjectPatch(mondayList[2].subject)
-                monday4.text = subjectPatch(mondayList[3].subject)
-                monday5.text = subjectPatch(mondayList[4].subject)
-                monday6.text = subjectPatch(mondayList[5].subject)
-                monday7.text = subjectPatch(mondayList[6].subject)
+                monday1.text = subjectPatch(mondayList[0].name)
+                monday2.text = subjectPatch(mondayList[1].name)
+                monday3.text = subjectPatch(mondayList[2].name)
+                monday4.text = subjectPatch(mondayList[3].name)
+                monday5.text = subjectPatch(mondayList[4].name)
+                monday6.text = subjectPatch(mondayList[5].name)
+                monday7.text = subjectPatch(mondayList[6].name)
             } catch (e: java.lang.Exception) {
             }
         }
@@ -392,13 +392,13 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
         binding.run {
 
             try {
-                tuesday1.text = subjectPatch(tuesdayList[0].subject)
-                tuesday2.text = subjectPatch(tuesdayList[1].subject)
-                tuesday3.text = subjectPatch(tuesdayList[2].subject)
-                tuesday4.text = subjectPatch(tuesdayList[3].subject)
-                tuesday5.text = subjectPatch(tuesdayList[4].subject)
-                tuesday6.text = subjectPatch(tuesdayList[5].subject)
-                tuesday7.text = subjectPatch(tuesdayList[6].subject)
+                tuesday1.text = subjectPatch(tuesdayList[0].name)
+                tuesday2.text = subjectPatch(tuesdayList[1].name)
+                tuesday3.text = subjectPatch(tuesdayList[2].name)
+                tuesday4.text = subjectPatch(tuesdayList[3].name)
+                tuesday5.text = subjectPatch(tuesdayList[4].name)
+                tuesday6.text = subjectPatch(tuesdayList[5].name)
+                tuesday7.text = subjectPatch(tuesdayList[6].name)
             } catch (e: java.lang.Exception) {
             }
         }
@@ -407,13 +407,13 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
     private fun fetchWednesday(wednesdayList: List<ScheduleEntity.Schedule>) {
         binding.run {
             try {
-                wednesday1.text = subjectPatch(wednesdayList[0].subject)
-                wednesday2.text = subjectPatch(wednesdayList[1].subject)
-                wednesday3.text = subjectPatch(wednesdayList[2].subject)
-                wednesday4.text = subjectPatch(wednesdayList[3].subject)
-                wednesday5.text = subjectPatch(wednesdayList[4].subject)
-                wednesday6.text = subjectPatch(wednesdayList[5].subject)
-                wednesday7.text = subjectPatch(wednesdayList[6].subject)
+                wednesday1.text = subjectPatch(wednesdayList[0].name)
+                wednesday2.text = subjectPatch(wednesdayList[1].name)
+                wednesday3.text = subjectPatch(wednesdayList[2].name)
+                wednesday4.text = subjectPatch(wednesdayList[3].name)
+                wednesday5.text = subjectPatch(wednesdayList[4].name)
+                wednesday6.text = subjectPatch(wednesdayList[5].name)
+                wednesday7.text = subjectPatch(wednesdayList[6].name)
             } catch (e: java.lang.Exception) {
             }
         }
@@ -422,15 +422,14 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
     private fun fetchThursday(thursdayList: List<ScheduleEntity.Schedule>) {
         binding.run {
             try {
-                thursday1.text = subjectPatch(thursdayList[0].subject)
-                thursday2.text = subjectPatch(thursdayList[1].subject)
-                thursday3.text = subjectPatch(thursdayList[2].subject)
-                thursday4.text = subjectPatch(thursdayList[3].subject)
-                thursday5.text = subjectPatch(thursdayList[4].subject)
-                thursday6.text = subjectPatch(thursdayList[5].subject)
-                thursday7.text = subjectPatch(thursdayList[6].subject)
+                thursday1.text = subjectPatch(thursdayList[0].name)
+                thursday2.text = subjectPatch(thursdayList[1].name)
+                thursday3.text = subjectPatch(thursdayList[2].name)
+                thursday4.text = subjectPatch(thursdayList[3].name)
+                thursday5.text = subjectPatch(thursdayList[4].name)
+                thursday6.text = subjectPatch(thursdayList[5].name)
+                thursday7.text = subjectPatch(thursdayList[6].name)
             } catch (e: java.lang.Exception) {
-                Log.d("TAG", "fetchThursday: " + thursdayList.size)
             }
         }
     }
@@ -438,13 +437,13 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
     private fun fetchFriday(fridayList: List<ScheduleEntity.Schedule>) {
         binding.run {
             try {
-                friday1.text = subjectPatch(fridayList[0].subject)
-                friday2.text = subjectPatch(fridayList[1].subject)
-                friday3.text = subjectPatch(fridayList[2].subject)
-                friday4.text = subjectPatch(fridayList[3].subject)
-                friday5.text = subjectPatch(fridayList[4].subject)
-                friday6.text = subjectPatch(fridayList[5].subject)
-                friday7.text = subjectPatch(fridayList[6].subject)
+                friday1.text = subjectPatch(fridayList[0].name)
+                friday2.text = subjectPatch(fridayList[1].name)
+                friday3.text = subjectPatch(fridayList[2].name)
+                friday4.text = subjectPatch(fridayList[3].name)
+                friday5.text = subjectPatch(fridayList[4].name)
+                friday6.text = subjectPatch(fridayList[5].name)
+                friday7.text = subjectPatch(fridayList[6].name)
             } catch (e: java.lang.Exception) {
             }
         }

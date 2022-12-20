@@ -9,10 +9,10 @@ data class ScheduleEntity(
 ) {
     data class Schedule(
         val grade: String,
-        val room: String,
-        val subject: String,
-        val sequence: String,
-        val day: String,
+        val class_num: String,
+        val name: String,
+        val gradations: String,
+        val day_at: String,
         val week_of_day: String,
     )
 }

@@ -12,10 +12,10 @@ data class ScheduleResponse(
 ) {
     data class Schedule(
         @SerializedName("grade") val grade: String,
-        @SerializedName("class_num") val room: String,
-        @SerializedName("name") val subject: String,
-        @SerializedName("gradations") val sequence: String,
-        @SerializedName("day_at") val day: String,
+        @SerializedName("class_num") val class_num: String,
+        @SerializedName("name") val name: String,
+        @SerializedName("gradations") val gradations: String,
+        @SerializedName("day_at") val day_at: String,
         @SerializedName("week_of_day") val week_of_day: String,
     )
 }
@@ -30,9 +30,9 @@ fun ScheduleResponse.toEntity() = ScheduleEntity(
 
 fun ScheduleResponse.Schedule.toEntity() = ScheduleEntity.Schedule(
     grade = grade,
-    room = room,
-    subject = subject,
-    sequence = sequence,
-    day = day,
+    class_num = class_num,
+    name = name,
+    gradations = gradations,
+    day_at = day_at,
     week_of_day = week_of_day,
 )

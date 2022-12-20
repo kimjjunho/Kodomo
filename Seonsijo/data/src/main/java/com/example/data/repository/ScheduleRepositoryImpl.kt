@@ -13,7 +13,7 @@ class ScheduleRepositoryImpl @Inject constructor(
 ): ScheduleRepository {
 
     override suspend fun getSchedule(scheduleParam: ScheduleParam): ScheduleEntity {
-        localScheduleDataSource.saveSchedule(remoteScheduleDataSource.getSchedule(scheduleParam))
+       // localScheduleDataSource.saveSchedule(remoteScheduleDataSource.getSchedule(scheduleParam))
         return remoteScheduleDataSource.getSchedule(scheduleParam)
     }
 

@@ -52,16 +52,11 @@ class MainViewModel @Inject constructor(
         onFailure = { }
     )
 
-    fun cleanSchedule() {
-        _schedule.value = ScheduleEntity(listOf(), listOf(), listOf(), listOf(), listOf())
-    }
-
     sealed class Event {
         object BadRequest : Event()
         object Forbidden : Event()
         object NotFound : Event()
         object ConflictAccountId : Event()
         object Server : Event()
-        object Empty: Event()
     }
 }
