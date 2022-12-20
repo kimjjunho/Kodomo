@@ -11,6 +11,7 @@ import com.example.domain.exception.TimeoutException
 import com.example.domain.exception.UnauthorizedException
 import com.example.domain.exception.UnknownException
 import retrofit2.HttpException
+import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
@@ -46,4 +47,6 @@ suspend fun <T> sendHttpRequest(
         throw e
     } catch (e: Throwable) {
         throw UnknownException()
+    } catch (e: ConnectException) {
+        throw NoInternetException()
     }

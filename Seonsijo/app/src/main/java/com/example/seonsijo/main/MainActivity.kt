@@ -22,6 +22,7 @@ import com.example.seonsijo.databinding.ActivityMainBinding
 import com.example.seonsijo.signup.SignUpViewModel
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import dagger.hilt.android.AndroidEntryPoint
+import org.openjdk.tools.javac.Main
 import java.sql.Date
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
@@ -383,8 +384,7 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
                 monday5.text = subjectPatch(mondayList[4].name)
                 monday6.text = subjectPatch(mondayList[5].name)
                 monday7.text = subjectPatch(mondayList[6].name)
-            } catch (e: java.lang.Exception) {
-            }
+            } catch (e: java.lang.Exception) { }
         }
     }
 
@@ -399,8 +399,7 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
                 tuesday5.text = subjectPatch(tuesdayList[4].name)
                 tuesday6.text = subjectPatch(tuesdayList[5].name)
                 tuesday7.text = subjectPatch(tuesdayList[6].name)
-            } catch (e: java.lang.Exception) {
-            }
+            } catch (e: java.lang.Exception) { }
         }
     }
 
@@ -414,8 +413,7 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
                 wednesday5.text = subjectPatch(wednesdayList[4].name)
                 wednesday6.text = subjectPatch(wednesdayList[5].name)
                 wednesday7.text = subjectPatch(wednesdayList[6].name)
-            } catch (e: java.lang.Exception) {
-            }
+            } catch (e: java.lang.Exception) { }
         }
     }
 
@@ -429,8 +427,7 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
                 thursday5.text = subjectPatch(thursdayList[4].name)
                 thursday6.text = subjectPatch(thursdayList[5].name)
                 thursday7.text = subjectPatch(thursdayList[6].name)
-            } catch (e: java.lang.Exception) {
-            }
+            } catch (e: java.lang.Exception) { }
         }
     }
 
@@ -444,8 +441,7 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
                 friday5.text = subjectPatch(fridayList[4].name)
                 friday6.text = subjectPatch(fridayList[5].name)
                 friday7.text = subjectPatch(fridayList[6].name)
-            } catch (e: java.lang.Exception) {
-            }
+            } catch (e: java.lang.Exception) { }
         }
     }
 
@@ -472,7 +468,6 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
     override fun observeEvent() {
         repeatOnStarted {
             mainViewModel.schedule.collect {
-                cleanText()
                 fetchMonday(it.mondayList)
                 fetchTuesday(it.tuesdayList)
                 fetchWednesday(it.wednesdayList)
@@ -484,25 +479,14 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
             mainViewModel.eventFlow.collect {
                 cleanText()
                 when (it) {
-                    is MainViewModel.Event.BadRequest -> {
-                        showToastShort("학년, 반이 잘 적용되었는지 확인해주세요")
-                        mainViewModel.autoSchedule()
-                    }
-                    is MainViewModel.Event.Forbidden -> {
-                        showToastShort("접근 불가 권한입니다")
-                        mainViewModel.autoSchedule()
-                    }
-                    is MainViewModel.Event.NotFound -> {
-                        showToastShort("데이터를 찾을 수 없습니다")
-                        mainViewModel.autoSchedule()
-                    }
-                    is MainViewModel.Event.Server -> {
-                        showToastShort("서버가 닫혀 있습니다")
-                        mainViewModel.autoSchedule()
-                    }
-                    else -> {
-                        showToastShort("알 수 없는 오류")
-                        mainViewModel.autoSchedule()
+                    is MainViewModel.Event.BadRequest -> showToastShort("학년, 반이 잘 적용되었는지 확인해주세요")
+                    is MainViewModel.Event.Forbidden -> showToastShort("접근 불가 권한입니다")
+                    is MainViewModel.Event.NotFound -> showToastShort("데이터를 찾을 수 없습니다")
+                    is MainViewModel.Event.ManyRequest -> showToastShort("요청이 너무 많습니다")
+                    is MainViewModel.Event.Server -> showToastShort("서버가 닫혀있습니다")
+                    is MainViewModel.Event.NoInternet -> {
+                        showToastShort("인터넷 연결 상태를 확인해주세요")
+                        mainViewModel.localSchedule()
                     }
                 }
             }
