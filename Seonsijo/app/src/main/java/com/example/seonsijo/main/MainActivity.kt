@@ -34,7 +34,7 @@ import kotlin.math.abs
 import kotlin.math.min
 
 @AndroidEntryPoint
-class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
+class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
     (R.layout.activity_main) {
 
     private val mainViewModel: MainViewModel by viewModels()
@@ -58,8 +58,6 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
     @SuppressLint("SetTextI18n")
     override fun initView() {
         classTextChange()
-
-        gradeTextChange()
 
         useRecyclerView()
 
@@ -128,7 +126,7 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
             tvClass.text = classNum.toString() + "반"
 
             btnBeforeWeek.setOnClickListener {
-                checkDay --
+                checkDay--
 
                 if (checkDay == 0) {
                     tvScheduleWeek.text = "이번주 시간표"
@@ -154,7 +152,7 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
             }
 
             btnAfterWeek.setOnClickListener {
-                checkDay ++
+                checkDay++
                 if (checkDay == 0) {
                     tvScheduleWeek.text = "이번주 시간표"
                 } else {
@@ -181,6 +179,7 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
             btnAlarm.setOnClickListener {
                 startActivity(Intent(this@MainActivity, AlarmActivity::class.java))
             }
+            gradeTextChange()
         }
     }
 
@@ -214,7 +213,7 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
         return dateMapper(year, month, day)
     }
 
-    private fun tableClickEvent(){
+    private fun tableClickEvent() {
         binding.run {
             monday1.gotoT()
             monday2.gotoT()
@@ -258,8 +257,8 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
         }
     }
 
-    private fun classTextChange(){
-        binding.tvClass.addTextChangedListener(object : TextWatcher{
+    private fun classTextChange() {
+        binding.tvClass.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -281,14 +280,23 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                     )
                 )
 
+                mainViewModel.getSchedule(
+                    ScheduleParam(
+                        grade = gradeNum,
+                        class_num = classNum,
+                        startAt = startAt,
+                        endAt = endAt,
+                    )
+                )
+
             }
 
             override fun afterTextChanged(p0: Editable?) {}
         })
     }
 
-    private fun gradeTextChange(){
-        binding.tvGrade.addTextChangedListener(object : TextWatcher{
+    private fun gradeTextChange() {
+        binding.tvGrade.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -326,27 +334,28 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
 
     private fun TextView.gotoT() {
         setOnClickListener {
-            if(!this.text.isNullOrEmpty()) {
+            if (!this.text.isNullOrEmpty()) {
                 gotoTestListActivity(this)
             }
         }
     }
 
-    private fun gotoTestListActivity(textView: TextView){
+    private fun gotoTestListActivity(textView: TextView) {
         val intent = Intent(applicationContext, TestListActivity::class.java)
-        intent.putExtra("subject",textView.text.toString())
+        intent.putExtra("subject", textView.text.toString())
 
         startActivity(intent)
     }
 
-    private fun useRecyclerView(){
+    private fun useRecyclerView() {
         binding.run {
             btnGradeNum.setOnClickListener {
                 slidingPanelLayout.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
 
                 slidingPanelRecyclerview.apply {
-                    adapter = MainAdapter(listOf("1학년","2학년","3학년"),this@MainActivity,true)
-                    layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+                    adapter = MainAdapter(listOf("1학년", "2학년", "3학년"), this@MainActivity, true)
+                    layoutManager =
+                        LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     setHasFixedSize(true)
                 }
             }
@@ -355,8 +364,9 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                 slidingPanelLayout.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
 
                 slidingPanelRecyclerview.apply {
-                    adapter = MainAdapter(listOf("1반","2반","3반","4반"),this@MainActivity,false)
-                    layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+                    adapter = MainAdapter(listOf("1반", "2반", "3반", "4반"), this@MainActivity, false)
+                    layoutManager =
+                        LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     setHasFixedSize(true)
                 }
             }
@@ -373,7 +383,8 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                 monday5.text = subjectPatch(mondayList[4].subject)
                 monday6.text = subjectPatch(mondayList[5].subject)
                 monday7.text = subjectPatch(mondayList[6].subject)
-            } catch (e: java.lang.Exception) { }
+            } catch (e: java.lang.Exception) {
+            }
         }
     }
 
@@ -388,7 +399,8 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                 tuesday5.text = subjectPatch(tuesdayList[4].subject)
                 tuesday6.text = subjectPatch(tuesdayList[5].subject)
                 tuesday7.text = subjectPatch(tuesdayList[6].subject)
-            } catch (e: java.lang.Exception) { }
+            } catch (e: java.lang.Exception) {
+            }
         }
     }
 
@@ -402,7 +414,8 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                 wednesday5.text = subjectPatch(wednesdayList[4].subject)
                 wednesday6.text = subjectPatch(wednesdayList[5].subject)
                 wednesday7.text = subjectPatch(wednesdayList[6].subject)
-            } catch (e: java.lang.Exception) { }
+            } catch (e: java.lang.Exception) {
+            }
         }
     }
 
@@ -416,7 +429,9 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                 thursday5.text = subjectPatch(thursdayList[4].subject)
                 thursday6.text = subjectPatch(thursdayList[5].subject)
                 thursday7.text = subjectPatch(thursdayList[6].subject)
-            } catch (e: java.lang.Exception) { }
+            } catch (e: java.lang.Exception) {
+                Log.d("TAG", "fetchThursday: " + thursdayList.size)
+            }
         }
     }
 
@@ -430,17 +445,26 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                 friday5.text = subjectPatch(fridayList[4].subject)
                 friday6.text = subjectPatch(fridayList[5].subject)
                 friday7.text = subjectPatch(fridayList[6].subject)
-            } catch (e: java.lang.Exception) { }
+            } catch (e: java.lang.Exception) {
+            }
         }
     }
 
     private fun subjectPatch(subject: String): String {
-        return if(subject.length > 5) {
+        return if (subject.length > 5) {
             when (subject) {
-                "컴퓨터 네트워크" ->  "컴네"
+                "컴퓨터 네트워크" -> "컴네"
                 "성공적인 직업생활" -> "성직"
-                "프로젝트실무1" -> "프실"
+                "프로젝트실무Ⅰ", "프로젝트실무Ⅱ" -> "프실"
                 "* 빅테이터 분석 결과 시각" -> "빅분"
+                "확률과 통계" -> "확통"
+                "C++ 프로그래밍" -> "C++"
+                "자료구조와 알고리즘" -> "자료구조"
+                "알고리즘실무" -> "알고리즘\n실무"
+                "웹프로그래밍" -> "웹프"
+                "소프트웨어공학 실무" -> "소공"
+                "임베디드 리눅스 프로그래밍" -> "리눅스"
+                "마이크로프로세서응용" -> "마프"
                 else -> subject
             }
         } else subject
@@ -449,6 +473,7 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
     override fun observeEvent() {
         repeatOnStarted {
             mainViewModel.schedule.collect {
+                cleanText()
                 fetchMonday(it.mondayList)
                 fetchTuesday(it.tuesdayList)
                 fetchWednesday(it.wednesdayList)
@@ -458,7 +483,8 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
         }
         repeatOnStarted {
             mainViewModel.eventFlow.collect {
-                when(it){
+                cleanText()
+                when (it) {
                     is MainViewModel.Event.BadRequest -> {
                         showToastShort("학년, 반이 잘 적용되었는지 확인해주세요")
                         mainViewModel.autoSchedule()
@@ -475,45 +501,6 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
                         showToastShort("서버가 닫혀 있습니다")
                         mainViewModel.autoSchedule()
                     }
-                    is MainViewModel.Event.Empty -> {
-                        binding.run {
-                            monday1.text = ""
-                            monday2.text = ""
-                            monday3.text = ""
-                            monday4.text = ""
-                            monday5.text = ""
-                            monday6.text = ""
-                            monday7.text = ""
-                            tuesday1.text = ""
-                            tuesday2.text = ""
-                            tuesday3.text = ""
-                            tuesday4.text = ""
-                            tuesday5.text = ""
-                            tuesday6.text = ""
-                            tuesday7.text = ""
-                            wednesday1.text = ""
-                            wednesday2.text = ""
-                            wednesday3.text = ""
-                            wednesday4.text = ""
-                            wednesday5.text = ""
-                            wednesday6.text = ""
-                            wednesday7.text = ""
-                            thursday1.text = ""
-                            thursday2.text = ""
-                            thursday3.text = ""
-                            thursday4.text = ""
-                            thursday5.text = ""
-                            thursday6.text = ""
-                            thursday7.text = ""
-                            friday1.text = ""
-                            friday2.text = ""
-                            friday3.text = ""
-                            friday4.text = ""
-                            friday5.text = ""
-                            friday6.text = ""
-                            friday7.text = ""
-                        }
-                    }
                     else -> {
                         showToastShort("알 수 없는 오류")
                         mainViewModel.autoSchedule()
@@ -522,4 +509,45 @@ class MainActivity @Inject constructor(): BaseActivity<ActivityMainBinding>
             }
         }
     }
+
+    private fun cleanText() {
+        binding.run {
+            monday1.text = ""
+            monday2.text = ""
+            monday3.text = ""
+            monday4.text = ""
+            monday5.text = ""
+            monday6.text = ""
+            monday7.text = ""
+            tuesday1.text = ""
+            tuesday2.text = ""
+            tuesday3.text = ""
+            tuesday4.text = ""
+            tuesday5.text = ""
+            tuesday6.text = ""
+            tuesday7.text = ""
+            wednesday1.text = ""
+            wednesday2.text = ""
+            wednesday3.text = ""
+            wednesday4.text = ""
+            wednesday5.text = ""
+            wednesday6.text = ""
+            wednesday7.text = ""
+            thursday1.text = ""
+            thursday2.text = ""
+            thursday3.text = ""
+            thursday4.text = ""
+            thursday5.text = ""
+            thursday6.text = ""
+            thursday7.text = ""
+            friday1.text = ""
+            friday2.text = ""
+            friday3.text = ""
+            friday4.text = ""
+            friday5.text = ""
+            friday6.text = ""
+            friday7.text = ""
+        }
+    }
 }
+

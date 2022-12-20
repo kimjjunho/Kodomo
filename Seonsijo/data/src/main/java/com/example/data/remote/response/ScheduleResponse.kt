@@ -13,7 +13,7 @@ data class ScheduleResponse(
     data class Schedule(
         @SerializedName("grade") val grade: String,
         @SerializedName("class_num") val room: String,
-        @SerializedName("subject") val subject: String,
+        @SerializedName("name") val subject: String,
         @SerializedName("gradations") val sequence: String,
         @SerializedName("day_at") val day: String,
         @SerializedName("week_of_day") val week_of_day: String,

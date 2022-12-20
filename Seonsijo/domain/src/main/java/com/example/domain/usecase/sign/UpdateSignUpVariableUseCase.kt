@@ -9,5 +9,4 @@ class UpdateSignUpVariableUseCase @Inject constructor(
     private val signRepository: SignRepository
 ): UseCase<SignUpEntity,Unit>(){
     override suspend fun execute(data: SignUpEntity) = signRepository.updateSignUpVariable(data)
-
 }

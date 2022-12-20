@@ -39,7 +39,6 @@ class MainViewModel @Inject constructor(
                 is NotFoundException -> emitEvent(Event.NotFound)
                 is ConflictException -> emitEvent(Event.ConflictAccountId)
                 is ServerException -> emitEvent(Event.Server)
-                else -> emitEvent(Event.Empty)
             }
             _schedule.value = ScheduleEntity(listOf(), listOf(), listOf(), listOf(), listOf())
         }
@@ -52,6 +51,10 @@ class MainViewModel @Inject constructor(
         },
         onFailure = { }
     )
+
+    fun cleanSchedule() {
+        _schedule.value = ScheduleEntity(listOf(), listOf(), listOf(), listOf(), listOf())
+    }
 
     sealed class Event {
         object BadRequest : Event()

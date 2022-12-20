@@ -45,19 +45,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                     startActivity(Intent(applicationContext, MainActivity::class.java))
                 }
             }
-
-//            splashButton.setOnClickListener {
-//                getDeviceToken()
-//
-//                Log.d("TAG", "initView: "+ MainActivity.gradeNum)
-//                Log.d("TAG", "initView: "+ MainActivity.classNum)
-//
-//                if(MainActivity.gradeNum != 0 && MainActivity.classNum != 0 && !MainActivity.device_token.isNullOrEmpty()){
-//                    startActivity(Intent(applicationContext,MainActivity::class.java))
-//                }else{
-//                    startActivity(Intent(applicationContext, SignUpActivity::class.java))
-//                }
-//            }
         }
     }
 
@@ -80,14 +67,4 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             }
         }
     }
-
-//    override fun observeEvent() {
-//        repeatOnStarted {
-//            signUpViewModel.signIn.collect{
-//                MainActivity.gradeNum = it.grade
-//                MainActivity.classNum = it.class_num
-//                MainActivity.device_token = it.device_token
-//            }
-//        }
-//    }
 }
