@@ -1,5 +1,6 @@
 package com.example.data.local.datasource
 
+import android.util.Log
 import com.example.data.local.preference.SignInPreference
 import com.example.domain.entity.signup.SignUpEntity
 import com.example.domain.param.SignInParam
@@ -14,15 +15,18 @@ class LocalSignInDataSourceImpl @Inject constructor(
             SignInParam(
                 grade = fetchGradeNum(),
                 class_num = fetchClassNum(),
-                device_token = fetchDeviceToken()
+                device_token = fetchDeviceToken(),
+                checkDay = fetchCheckDay(),
             )
         }
 
 
-    override suspend fun saveSignInVariable(signUpEntity: SignUpEntity) =
+    override suspend fun saveSignInVariable(signUpEntity: SignUpEntity) = kotlin.run {
         with(signInPreference){
             saveGradeNum(signUpEntity.grade)
             saveClassNum(signUpEntity.class_num)
+            saveCheckDay(signUpEntity.check_day)
             saveDeviceToken(signUpEntity.device_token)
         }
+    }
 }

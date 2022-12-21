@@ -19,6 +19,7 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.openjdk.tools.javac.Main
 
 @SuppressLint("CustomSplashScreen")
 @OptIn(DelicateCoroutinesApi::class)
@@ -64,6 +65,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             signUpViewModel.signIn.collect{
                 MainActivity.gradeNum = it.grade
                 MainActivity.classNum = it.class_num
+                MainActivity.checkDay = it.checkDay
             }
         }
     }

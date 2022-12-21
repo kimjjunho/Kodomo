@@ -9,6 +9,7 @@ import com.example.domain.exception.ForbiddenException
 import com.example.domain.exception.NoInternetException
 import com.example.domain.exception.NotFoundException
 import com.example.domain.exception.ServerException
+import com.example.domain.exception.TimeoutException
 import com.example.domain.exception.TooManyRequestException
 import com.example.domain.usecase.schedule.AutoScheduleUseCase
 import com.example.seonsijo.base.BaseViewModel
@@ -29,16 +30,11 @@ class MainViewModel @Inject constructor(
 
     fun getSchedule(scheduleParam: ScheduleParam) = execute(
         job = {
-            try {
-                scheduleUseCase.execute(scheduleParam)
-            } catch (e: java.net.ConnectException) {
-                autoScheduleUseCase.execute(Unit)
-            } catch (e: UnknownHostException) {
-                autoScheduleUseCase.execute(Unit)
-            }
+            scheduleUseCase.execute(scheduleParam)
         },
         onSuccess = { _schedule.tryEmit(it) },
         onFailure = {
+            _schedule.value = ScheduleEntity(listOf(), listOf(), listOf(), listOf(), listOf())
             when (it) {
                 is BadRequestException -> emitEvent(Event.BadRequest)
                 is ForbiddenException -> emitEvent(Event.Forbidden)
@@ -46,15 +42,18 @@ class MainViewModel @Inject constructor(
                 is TooManyRequestException -> emitEvent(Event.ManyRequest)
                 is ServerException -> emitEvent(Event.Server)
                 is NoInternetException -> emitEvent(Event.NoInternet)
+                is TimeoutException -> emitEvent(Event.TimeOut)
+                else -> { Log.d("TAG", "getSchedule: "+it.message) }
             }
-            _schedule.value = ScheduleEntity(listOf(), listOf(), listOf(), listOf(), listOf())
         }
     )
 
     fun localSchedule() = execute(
-        job = { autoScheduleUseCase.execute(Unit) },
+        job = {
+            autoScheduleUseCase.execute(Unit)
+              },
         onSuccess = { _schedule.tryEmit(it) },
-        onFailure = {  }
+        onFailure = { }
     )
 
     sealed class Event {
@@ -63,6 +62,7 @@ class MainViewModel @Inject constructor(
         object NotFound : Event()
         object ManyRequest: Event()
         object Server : Event()
-        object NoInternet: Event()
+        object NoInternet : Event()
+        object TimeOut : Event()
     }
 }

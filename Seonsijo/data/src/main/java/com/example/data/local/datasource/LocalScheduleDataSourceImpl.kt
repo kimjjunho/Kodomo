@@ -1,5 +1,6 @@
 package com.example.data.local.datasource
 
+import android.util.Log
 import com.example.data.local.dao.ScheduleDao
 import com.example.data.local.entity.toEntity
 import com.example.data.local.entity.toRoomEntity

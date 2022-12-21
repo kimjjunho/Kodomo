@@ -10,6 +10,7 @@ import com.example.seonsijo.main.MainActivity
 import com.example.seonsijo.util.repeatOnStarted
 import com.google.firebase.FirebaseApp
 import dagger.hilt.android.AndroidEntryPoint
+import org.openjdk.tools.javac.Main
 
 @AndroidEntryPoint
 class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sign_up){
@@ -42,7 +43,8 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                         SignUpEntity(
                             grade = MainActivity.gradeNum.toString().toInt(),
                             class_num = MainActivity.classNum.toString().toInt(),
-                            device_token = MainActivity.device_token
+                            device_token = MainActivity.device_token,
+                            check_day = MainActivity.checkDay
                         )
                     )
                 }

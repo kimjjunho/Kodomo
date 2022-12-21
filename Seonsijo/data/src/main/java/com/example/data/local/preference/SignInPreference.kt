@@ -17,4 +17,8 @@ interface SignInPreference {
     suspend fun saveGradeClassCheck(gradeClassCheck: Boolean)
 
     suspend fun fetchGradeClassCheck(): Boolean
+
+    suspend fun saveCheckDay(checkDay: Int)
+
+    suspend fun fetchCheckDay(): Int
 }

@@ -41,12 +41,12 @@ suspend fun <T> sendHttpRequest(
         }
     } catch (e: UnknownHostException) {
         throw NoInternetException()
+    } catch (e: ConnectException) {
+        throw NoInternetException()
     } catch (e: SocketTimeoutException) {
         throw TimeoutException()
     } catch (e: NeedLoginException) {
         throw e
     } catch (e: Throwable) {
         throw UnknownException()
-    } catch (e: ConnectException) {
-        throw NoInternetException()
     }

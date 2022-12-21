@@ -10,16 +10,16 @@ import com.example.data.local.entity.ScheduleRoomEntity
 @Dao
 interface ScheduleDao {
     @Query("SELECT * FROM schedule_room")
-    suspend fun getMain(): List<ScheduleRoomEntity>
+    suspend fun getMain(): ScheduleRoomEntity
 
     @Query("DELETE FROM schedule_room")
     suspend fun deleteSchedule()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMain(mainRoomEntity: List<ScheduleRoomEntity>)
+    suspend fun insertMain(scheduleRoomEntity: ScheduleRoomEntity)
 
     @Transaction
-    suspend fun updateMain(repo: List<ScheduleRoomEntity>){
+    suspend fun updateMain(repo: ScheduleRoomEntity){
         deleteSchedule()
         insertMain(repo)
     }

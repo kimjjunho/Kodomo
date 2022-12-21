@@ -49,7 +49,6 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
     private var endYear = 0
     private var endMonth = 0
     private var endDay = 0
-    private var checkDay = 0
 
     private val calendar = GregorianCalendar()
 
@@ -61,6 +60,8 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
         classTextChange()
 
         useRecyclerView()
+
+        mainViewModel.localSchedule()
 
         // tableClickEvent()
         var startCalendarCheckDay = 0
@@ -120,6 +121,8 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
         endAt = endMapper()
         startAt = startMapper()
 
+        setTitleText()
+
         binding.run {
 
             tvGrade.text = gradeNum.toString() + "학년"
@@ -129,15 +132,7 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
             btnBeforeWeek.setOnClickListener {
                 checkDay--
 
-                if (checkDay == 0) {
-                    tvScheduleWeek.text = "이번주 시간표"
-                } else {
-                    if (checkDay < 0) {
-                        tvScheduleWeek.text = abs(checkDay).toString() + "주 전 시간표"
-                    } else {
-                        tvScheduleWeek.text = checkDay.toString() + "주 후 시간표"
-                    }
-                }
+                setTitleText()
 
                 startAt = startMapper()
                 endAt = endMapper()
@@ -154,15 +149,8 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
 
             btnAfterWeek.setOnClickListener {
                 checkDay++
-                if (checkDay == 0) {
-                    tvScheduleWeek.text = "이번주 시간표"
-                } else {
-                    if (checkDay < 0) {
-                        tvScheduleWeek.text = abs(checkDay).toString() + "주 전 시간표"
-                    } else {
-                        tvScheduleWeek.text = checkDay.toString() + "주 후 시간표"
-                    }
-                }
+
+                setTitleText()
 
                 startAt = startMapper()
                 endAt = endMapper()
@@ -188,6 +176,7 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
         var gradeNum = 1
         var classNum = 1
         var device_token: String? = null
+        var checkDay = 0
     }
 
     private fun dateMapper(year: Int, month: Int, day: Int): String =
@@ -273,14 +262,6 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
 //                    )
 //                )
 //
-                signUpViewModel.updateSignUpVariable(
-                    SignUpEntity(
-                        grade = gradeNum,
-                        class_num = classNum,
-                        device_token = device_token
-                    )
-                )
-
                 mainViewModel.getSchedule(
                     ScheduleParam(
                         grade = gradeNum,
@@ -311,14 +292,6 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
 //                    )
 //                )
 //
-                signUpViewModel.updateSignUpVariable(
-                    SignUpEntity(
-                        grade = gradeNum,
-                        class_num = classNum,
-                        device_token = device_token
-                    )
-                )
-
                 mainViewModel.getSchedule(
                     ScheduleParam(
                         grade = gradeNum,
@@ -369,6 +342,20 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
                     layoutManager =
                         LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     setHasFixedSize(true)
+                }
+            }
+        }
+    }
+
+    private fun setTitleText() {
+        binding.run {
+            if (checkDay == 0) {
+                tvScheduleWeek.text = "이번주 시간표"
+            } else {
+                if (checkDay < 0) {
+                    tvScheduleWeek.text = abs(checkDay).toString() + "주 전 시간표"
+                } else {
+                    tvScheduleWeek.text = checkDay.toString() + "주 후 시간표"
                 }
             }
         }
@@ -468,6 +455,15 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
     override fun observeEvent() {
         repeatOnStarted {
             mainViewModel.schedule.collect {
+                cleanText()
+                signUpViewModel.updateSignUpVariable(
+                    SignUpEntity(
+                        grade = gradeNum,
+                        class_num = classNum,
+                        device_token = device_token,
+                        check_day = checkDay
+                    )
+                )
                 fetchMonday(it.mondayList)
                 fetchTuesday(it.tuesdayList)
                 fetchWednesday(it.wednesdayList)
@@ -484,7 +480,7 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
                     is MainViewModel.Event.NotFound -> showToastShort("데이터를 찾을 수 없습니다")
                     is MainViewModel.Event.ManyRequest -> showToastShort("요청이 너무 많습니다")
                     is MainViewModel.Event.Server -> showToastShort("서버가 닫혀있습니다")
-                    is MainViewModel.Event.NoInternet -> {
+                    is MainViewModel.Event.NoInternet, MainViewModel.Event.TimeOut -> {
                         showToastShort("인터넷 연결 상태를 확인해주세요")
                         mainViewModel.localSchedule()
                     }
