@@ -6,6 +6,7 @@ import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -145,6 +146,14 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
                         endAt = endAt,
                     )
                 )
+
+                if (checkDay <= -2) {
+                    btnBeforeWeek.visibility = View.INVISIBLE
+                }
+
+                if (checkDay < 2) {
+                    btnAfterWeek.visibility = View.VISIBLE
+                }
             }
 
             btnAfterWeek.setOnClickListener {
@@ -163,6 +172,14 @@ class MainActivity @Inject constructor() : BaseActivity<ActivityMainBinding>
                         endAt = endAt,
                     )
                 )
+
+                if (checkDay >= 2) {
+                    btnAfterWeek.visibility = View.INVISIBLE
+                }
+                if (checkDay > -2) {
+                    btnBeforeWeek.visibility = View.VISIBLE
+                }
+
             }
 
             btnAlarm.setOnClickListener {
